@@ -2,7 +2,7 @@
 title: "Four pillars of OOP"
 description: "Four pillars of OOP"
 pubDate: "Jan 18 2025"
-heroImage: "/mc-blog/oop-code.png"
+heroImage: "/mc-blog/oop-pillars.svg"
 ---
 
 ### What is Object Oriented Programming (OOP)?
