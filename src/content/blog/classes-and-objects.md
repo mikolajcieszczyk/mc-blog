@@ -1,7 +1,7 @@
 ---
-title: "Classes and objects"
-description: "Classes and objects"
-pubDate: "Feb 15 2025"
+title: "OOP: Classes and objects"
+description: "OOP: Classes and objects"
+pubDate: "Feb 15 2025 11:30"
 heroImage: "/mc-blog/oop-code.png"
 ---
 
