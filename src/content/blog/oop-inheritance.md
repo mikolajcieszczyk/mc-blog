@@ -1,6 +1,6 @@
 ---
 title: "OOP: Inheritance"
-description: "Classes and objects"
+description: "OOP: Inheritance"
 pubDate: "Feb 15 2025 12:00"
 heroImage: "/mc-blog/oop-inheritance.png"
 ---
