@@ -1,6 +1,6 @@
 ---
-title: "OOP: Very simple TODO app code"
-description: "OOP: Very simple TODO app code"
+title: "OOP: Very simple CRUD TODO app code"
+description: "OOP: Very simple CRUD TODO app code"
 pubDate: "Feb 15 2025 13:00"
 heroImage: "/mc-blog/oop-todo.svg"
 ---
