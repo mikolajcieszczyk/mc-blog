@@ -5,4 +5,8 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   site: "https://mikolajcieszczyk.github.io",
   base: "/",
+  trailingSlash: "always",
+  build: {
+    format: "directory",
+  },
 });
