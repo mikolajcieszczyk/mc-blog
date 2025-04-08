@@ -1,87 +1,152 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
-import Header from '../components/Header.astro';
+import type { CollectionEntry } from "astro:content";
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+import Header from "../components/Header.astro";
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<"blog">["data"];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
 <html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 820px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
-	</head>
+  <head>
+    <BaseHead title={title} description={description} />
+    <style>
+      main {
+        width: calc(100% - 2em);
+        max-width: 100%;
+        margin: 0;
+      }
+      .hero-image {
+        width: 100%;
+      }
+      .hero-image img {
+        display: block;
+        margin: 0 auto;
+        border-radius: 12px;
+        box-shadow: var(--box-shadow);
+      }
+      .prose {
+        width: 820px;
+        max-width: calc(100% - 2em);
+        margin: auto;
+        padding: 1em;
+        color: rgb(var(--gray-dark));
+      }
+      .title {
+        margin-bottom: 1em;
+        padding: 1em 0;
+        text-align: center;
+        line-height: 1;
+      }
+      .title h1 {
+        margin: 0 0 0.5em 0;
+      }
+      .date {
+        margin-bottom: 0.5em;
+        color: rgb(var(--gray));
+      }
+      .last-updated-on {
+        font-style: italic;
+      }
+      .scroll-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: #000;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        cursor: pointer;
+        display: none;
+        opacity: 0.8;
+        transition: opacity 0.3s;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .scroll-to-top:hover {
+        opacity: 1;
+      }
+      .scroll-to-top svg {
+        width: 30px;
+        height: 30px;
+        fill: white;
+      }
+    </style>
+  </head>
 
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							{
-								pubDate && <FormattedDate date={pubDate} />
-							}
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
-					</div>
-					<slot />
-				</div>
-			</article>
-		</main>
-		<Footer />
-	</body>
+  <body>
+    <Header />
+    <main>
+      <article>
+        <div class="hero-image">
+          {
+            heroImage && (
+              <img width={1020} height={510} src={heroImage} alt="" />
+            )
+          }
+        </div>
+        <div class="prose">
+          <div class="title">
+            <div class="date">
+              {pubDate && <FormattedDate date={pubDate} />}
+              {
+                updatedDate && (
+                  <div class="last-updated-on">
+                    Last updated on <FormattedDate date={updatedDate} />
+                  </div>
+                )
+              }
+            </div>
+            <h1>{title}</h1>
+            <hr />
+          </div>
+          <slot />
+        </div>
+      </article>
+    </main>
+    <Footer />
+    <button class="scroll-to-top" id="scroll-to-top" aria-label="Scroll to top">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path
+          d="M472.732,243.625l-0.869-1.337l-0.929-1.296L320.925,33.194C305.854,12.379,281.598,0,255.996,0
+          c-25.594,0-49.85,12.379-64.87,33.125L41.066,240.992l-0.929,1.296l-0.869,1.337c-8.17,12.669-12.49,27.323-12.49,42.395
+          c0,16.196,4.924,31.753,14.254,44.993c18.105,25.755,49.441,38.015,80.18,31.463v63.755c0,47.294,38.476,85.769,85.769,85.769
+          h98.039c47.285,0,85.76-38.475,85.76-85.769v-63.755c30.689,6.586,62.059-5.666,80.215-31.497
+          c9.295-13.206,14.228-28.772,14.228-44.959C485.222,270.948,480.902,256.294,472.732,243.625z M421.034,295.86
+          c-4.013,5.708-11.084,8.401-17.866,6.808l-73.459-17.159v140.722c0,13.64-11.05,24.698-24.69,24.698H206.98
+          c-13.64,0-24.698-11.059-24.698-24.698V285.509l-73.442,17.159c-6.799,1.584-13.861-1.099-17.874-6.808
+          c-2.079-2.948-3.118-6.39-3.118-9.84c0-3.221,0.912-6.45,2.735-9.278L240.592,68.942c3.578-4.942,9.304-7.872,15.404-7.872
+          s11.834,2.93,15.412,7.872l150.009,207.799c1.823,2.828,2.734,6.057,2.734,9.278C424.152,289.47,423.104,292.912,421.034,295.86z"
+        ></path>
+      </svg>
+    </button>
+    <script>
+      const scrollToTopButton = document.getElementById("scroll-to-top");
+
+      if (scrollToTopButton) {
+        window.addEventListener("scroll", () => {
+          if (window.pageYOffset > 300) {
+            scrollToTopButton.style.display = "flex";
+          } else {
+            scrollToTopButton.style.display = "none";
+          }
+        });
+
+        scrollToTopButton.addEventListener("click", () => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
+      }
+    </script>
+  </body>
 </html>
