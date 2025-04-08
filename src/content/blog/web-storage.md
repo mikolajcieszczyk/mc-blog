@@ -94,9 +94,96 @@ Set-Cookie: name=value; Expires=date; Path=path; Domain=domain; Secure; HttpOnly
    ```
 
 3. **Third-Party Cookies**: Cookies set by a domain other than the one being visited
+
    ```
    Set-Cookie: trackingId=xyz789; Domain=.advertiser.com; Path=/
    ```
+
+4. **Supercookies**: Persistent identifiers that can be recreated even after being deleted
+
+   - Use multiple storage mechanisms to recreate themselves
+   - Often used for tracking and fingerprinting
+   - Can be created using:
+     - Browser fingerprinting
+     - Multiple storage locations (localStorage, sessionStorage, IndexedDB)
+     - Browser cache
+     - ETags
+   - Example implementation:
+
+   ```javascript
+   // Creating a supercookie using multiple storage mechanisms
+   function createSupercookie(id) {
+     // Store in multiple locations
+     localStorage.setItem("tracking_id", id);
+     sessionStorage.setItem("tracking_id", id);
+     document.cookie = `tracking_id=${id}; path=/; max-age=31536000`;
+
+     // Store in IndexedDB
+     const dbRequest = indexedDB.open("trackingDB", 1);
+     dbRequest.onsuccess = (event) => {
+       const db = event.target.result;
+       const transaction = db.transaction(["tracking"], "readwrite");
+       const store = transaction.objectStore("tracking");
+       store.put({ id: id });
+     };
+   }
+   ```
+
+5. **Zombie Cookies**: Cookies that automatically recreate themselves after deletion
+
+   - Similar to supercookies but specifically focused on persistence
+   - Often use Flash or Silverlight storage as backup
+   - Can be implemented using:
+     - Browser plugins
+     - Multiple storage mechanisms
+     - Hidden iframes
+   - Example detection:
+
+   ```javascript
+   // Checking for zombie cookie recreation
+   function checkZombieCookie(cookieName) {
+     const originalValue = getCookie(cookieName);
+     deleteCookie(cookieName);
+
+     // Wait a short time
+     setTimeout(() => {
+       const newValue = getCookie(cookieName);
+       if (newValue && newValue === originalValue) {
+         console.log("Zombie cookie detected!");
+       }
+     }, 1000);
+   }
+   ```
+
+### Security Implications of Supercookies and Zombie Cookies
+
+Both supercookies and zombie cookies raise significant privacy concerns:
+
+- They can track users even when they try to opt out
+- They bypass standard cookie deletion mechanisms
+- They can be used for persistent user tracking
+- They may violate privacy regulations like GDPR
+- They can be used for fingerprinting and profiling
+
+Best practices for handling these cookies:
+
+1. **Detection**:
+
+   - Monitor for unusual storage patterns
+   - Check for recreation after deletion
+   - Look for multiple storage mechanisms
+
+2. **Prevention**:
+
+   - Use privacy-focused browser extensions
+   - Enable "Do Not Track" settings
+   - Regularly clear all browser data
+   - Use private/incognito mode
+
+3. **Regulatory Compliance**:
+   - Ensure compliance with GDPR, CCPA, and other privacy laws
+   - Provide clear opt-out mechanisms
+   - Document all tracking methods used
 
 ### Setting and Reading Cookies
 
