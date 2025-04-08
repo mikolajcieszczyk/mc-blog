@@ -1,0 +1,21 @@
+<svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="800" height="300" fill="#f8f9fa"/>
+
+    <!-- Circles for MVVM -->
+    <circle cx="200" cy="150" r="70" fill="#4CAF50" opacity="0.9"/>
+    <circle cx="400" cy="150" r="70" fill="#2196F3" opacity="0.9"/>
+    <circle cx="600" cy="150" r="70" fill="#FF9800" opacity="0.9"/>
+
+    <!-- Labels -->
+    <text x="200" y="160" text-anchor="middle" font-family="Arial" font-size="24" fill="white" font-weight="bold">Model</text>
+    <text x="400" y="160" text-anchor="middle" font-family="Arial" font-size="24" fill="white" font-weight="bold">View</text>
+    <text x="600" y="160" text-anchor="middle" font-family="Arial" font-size="24" fill="white" font-weight="bold">ViewModel</text>
+
+    <!-- Connecting Lines -->
+    <path d="M 270 150 L 330 150" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <path d="M 470 150 L 530 150" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+    <!-- Main Title -->
+    <text x="400" y="50" text-anchor="middle" font-family="Arial" font-size="32" fill="#333" font-weight="bold">Model-View-ViewModel</text>
+</svg>
