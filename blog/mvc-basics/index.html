@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.1.7"><!-- Font preloads --><link rel="preload" href="/mc-blog//fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/mc-blog//fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://mikolajcieszczyk.github.io/mc-blog/blog/mvc-basics/"><!-- Primary Meta Tags --><title>MVC: Basics</title><meta name="title" content="MVC: Basics"><meta name="description" content="MVC: Basics"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://mikolajcieszczyk.github.io/mc-blog/blog/mvc-basics/"><meta property="og:title" content="MVC: Basics"><meta property="og:description" content="MVC: Basics"><meta property="og:image" content="https://mikolajcieszczyk.github.io/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://mikolajcieszczyk.github.io/mc-blog/blog/mvc-basics/"><meta property="twitter:title" content="MVC: Basics"><meta property="twitter:description" content="MVC: Basics"><meta property="twitter:image" content="https://mikolajcieszczyk.github.io/blog-placeholder-1.jpg"><style>:root{--accent: #2337ff;--accent-dark: #000d8a;--black: 15, 18, 25;--gray: 96, 115, 159;--gray-light: 229, 233, 240;--gray-dark: 34, 41, 57;--gray-gradient: rgba(var(--gray-light), 50%), #fff;--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%)}@font-face{font-family:Atkinson;src:url(/mc-blog//fonts/atkinson-regular.woff) format("woff");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:Atkinson;src:url(/mc-blog//fonts/atkinson-bold.woff) format("woff");font-weight:700;font-style:normal;font-display:swap}body{font-family:Atkinson,sans-serif;font-size:20px;line-height:1.7;color:rgb(var(--gray-dark));margin:0;padding:0;text-align:left;background:linear-gradient(var(--gray-gradient)) no-repeat;background-size:100% 600px;word-wrap:break-word;overflow-wrap:break-word}main{width:720px;max-width:calc(100% - 2em);margin:auto;padding:3em 1em}h1,h2,h3,h4,h5,h6{margin:1rem 0;color:rgb(var(--black));line-height:1.2}h1{font-size:3.052em}h2{font-size:2.441em}h3{font-size:1.953em}h4{font-size:1.563em}h5{font-size:1.25em}strong,b{font-weight:700}a{color:var(--accent);&:hover{color:var(--accent)}}textarea{width:100%;font-size:16px}input{font-size:16px}table{width:100%}img{max-width:100%;height:auto;border-radius:8px}code{padding:2px 5px;background-color:rgb(var(--gray-light));border-radius:2px}pre{padding:1.5em;border-radius:8px;white-space:pre-wrap!important;word-wrap:break-word!important;max-width:100%;>code{all:unset;white-space:pre-wrap!important;word-wrap:break-word!important}}blockquote{border-left:4px solid var(--accent);padding:0 0 0 20px;margin:0;font-size:1.333em}hr{border:none;border-top:1px solid rgb(var(--gray-light))}ol,ul,p{margin:8px}ol{padding-left:3rem!important}ul{padding-left:4rem!important}.tldr{border:2px solid #e0e0e0;border-radius:8px;padding:10px 20px;margin:20px 0 60px;background-color:#f8f9fa;box-shadow:var(--box-shadow)}.sr-only{border:0;padding:0;margin:0;position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);clip-path:inset(50%);white-space:nowrap}@media (max-width: 720px){body{font-size:18px}main{padding:1em}}footer[data-astro-cid-sz7xmlte]{padding:1em;background:linear-gradient(var(--gray-gradient)) no-repeat;color:rgb(var(--gray));text-align:center}.social-links[data-astro-cid-sz7xmlte]{display:flex;justify-content:center;gap:1em;margin-top:1em}.social-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]{text-decoration:none;color:rgb(var(--gray))}.social-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:hover{color:rgb(var(--gray-dark))}a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}header[data-astro-cid-3ef6ksr2]{margin:0;padding:0 1em;background:#fff;box-shadow:0 2px 8px rgba(var(--black),5%)}h2[data-astro-cid-3ef6ksr2]{margin:0;font-size:1em}h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2],h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none}nav[data-astro-cid-3ef6ksr2]{display:flex;align-items:center;justify-content:space-between}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{padding:1em .5em;color:var(--black);border-bottom:4px solid transparent;text-decoration:none}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none;border-bottom-color:var(--accent)}.social-links[data-astro-cid-3ef6ksr2],.social-links[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{display:flex}@media (max-width: 720px){.social-links[data-astro-cid-3ef6ksr2]{display:none}}
+main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:820px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:rgb(var(--gray-dark))}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:rgb(var(--gray))}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}
+</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/mc-blog/" data-astro-cid-3ef6ksr2>MC Blog</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/mc-blog/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Home </a>  <a href="/mc-blog/blog" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Blog </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://github.com/mikolajcieszczyk" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Go to my GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo> <img width="1020" height="510" src="/mc-blog/mvc.svg" alt="" data-astro-cid-bvzihdzo> </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <time datetime="2025-02-18T00:00:00.000Z"> Feb 18, 2025 </time>  </div> <h1 data-astro-cid-bvzihdzo>MVC: Basics</h1> <hr data-astro-cid-bvzihdzo> </div>  <p><strong>TLDR:</strong></p>
+<div class="tldr">
+<p><strong>MVC (Model-View-Controller)</strong> is an architectural pattern that divides application into 3 main components:</p>
+<p><strong>Classical Approach:</strong></p>
+<ol>
+<li><strong>Model</strong> - manages data and business logic</li>
+<li><strong>View</strong> - displays user interface</li>
+<li><strong>Controller</strong> - mediates between Model and View</li>
+</ol>
+<p><strong>Modern Framework Implementation (NestJS):</strong></p>
+<ol>
+<li><strong>Model</strong> is <strong>split</strong> into:</li>
+</ol>
+<ul>
+<li><strong>Entity</strong> (data structure)</li>
+<li><strong>Service</strong> (business logic)</li>
+</ul>
+<ol start="2">
+<li><strong>View</strong> - View in modern applications is often a separate frontend (e.g., React) consuming API data, rather than being tightly integrated with the backend.</li>
+<li><strong>Controller</strong> - manages HTTP routing and requests</li>
+</ol>
+<p><strong>Main Difference?</strong></p>
+<ul>
+<li>
+<p><strong>In classic MVC</strong>, the Model handled both data structure and business logic.</p>
+</li>
+<li>
+<p><strong>In modern frameworks</strong>, this responsibility is split into two layers: Entity (defining data structure) and Service (handling business logic). This improves code organization and makes testing easier.</p>
+</li>
+</ul>
+<p><strong>Modern data flow:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#79B8FF">1.</span><span style="color:#B392F0"> Request</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">View </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> Controller </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> Service </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> Entity </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> Database</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">2.</span><span style="color:#B392F0"> Response</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">Database </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> Entity </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> Service </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> Controller </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> View</span></span></code></pre>
+<p>Communication is bidirectional and always the same pairs of components communicate with each other:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#E1E4E8">View </span><span style="color:#F97583">&#x3C;-></span><span style="color:#E1E4E8"> Controller </span><span style="color:#F97583">&#x3C;-></span><span style="color:#E1E4E8"> Service </span><span style="color:#F97583">&#x3C;-></span><span style="color:#E1E4E8"> Entity </span><span style="color:#F97583">&#x3C;-></span><span style="color:#E1E4E8"> Database</span></span></code></pre>
+<p>This evolution of MVC helps maintain separation of concerns while adapting to modern web development needs.</p>
+</div>
+<p>The <strong>Model-View-Controller (MVC)</strong> is <strong>an architectural pattern</strong> that divides an application into <strong>three interconnected components</strong>, creating:</p>
+<ol>
+<li>clear separation of concerns</li>
+<li>better code organization and maintainability.</li>
+</ol>
+<h4 id="core-components-classical-approach">Core Components (classical approach)</h4>
+<p><img alt="Alternatywny tekst" width="800" height="400" loading="lazy" decoding="async" src="/mc-blog/_astro/mvc-diagram.DPFmj-JQ_111Ayw.svg" ></p>
+<h4 id="1-model">1. Model</h4>
+<ul>
+<li>Manages data and business logic</li>
+<li>Handles data validation</li>
+<li>Contains business rules</li>
+<li>Independent of the UI</li>
+<li>Manages application behavior</li>
+<li>Notifies observers about changes</li>
+</ul>
+<h4 id="2-view">2. View</h4>
+<ul>
+<li>Presents data to users</li>
+<li>Handles the visual representation</li>
+<li>Receives user input and displays updates</li>
+<li>Can be any output representation (web page, chart, diagram)</li>
+</ul>
+<h4 id="3-controller">3. Controller</h4>
+<ul>
+<li>Acts as an interface between Model and View</li>
+<li>Processes user input and business logic</li>
+<li>Updates the Model and View accordingly</li>
+<li>Maintains program flow and data integrity</li>
+</ul>
+<p>This architecture has become fundamental in modern web development, forming the basis for many frameworks and serving as a blueprint for scalable application design.</p>
+<h4 id="modern-framework-implementation-nestjs">Modern Framework Implementation (NestJS)</h4>
+<p>In modern frameworks like NestJS, the classic MVC pattern has evolved to include additional layers:</p>
+<p><img alt="Alternatywny tekst" width="800" height="400" loading="lazy" decoding="async" src="/mc-blog/_astro/mvc-nestjs.DDvEJfW4_Z2fpTp4.svg" ></p>
+<h5 id="model-vs-entity--service-pattern">Model vs Entity + Service Pattern</h5>
+<p><strong>Classic MVC Model:</strong></p>
+<ul>
+<li>Contains both data structure and business logic</li>
+<li>Handles validation and data processing</li>
+<li>Manages application behavior</li>
+<li>Is responsible for business rules</li>
+</ul>
+<p><strong>In modern frameworks like NestJS, the Model is split into:</strong></p>
+<ul>
+<li><strong>Entity</strong> - Represents the database schema and contains only data attributes.</li>
+<li><strong>Service</strong> - Handles business logic, data validation, and communication with the database via the repository pattern.</li>
+</ul>
+<p>This separation ensures better maintainability and testability. See the example below:</p>
+<h5 id="benefits-of-mvc-and-modern-implementation">Benefits of MVC and Modern Implementation</h5>
+<ul>
+<li>Loose coupling between components improves maintainability</li>
+<li>Clear separation of concerns (data vs. logic vs. presentation)</li>
+<li>Better testability (Services can be tested independently, Entities can be mocked)</li>
+<li>Modular architecture, making scaling and extension easier</li>
+<li>Encourages parallel development of features</li>
+</ul>
+<p>This modern interpretation of MVC shows how architectural patterns can evolve to meet contemporary development needs while maintaining the core principles of separation of concerns and maintainable code.</p>
+<h4 id="nestjs-example">NestJS example</h4>
+<p><strong>1. Entity</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#B392F0">Entity</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> User</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">PrimaryGeneratedColumn</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#FFAB70">  id</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> number</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#B392F0">Column</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#FFAB70">  name</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>Only represents data structure</li>
+<li>Defines database schema</li>
+<li>Contains entity attributes</li>
+<li>Doesn’t contain business logic</li>
+<li>In NestJS, business logic moved to Services</li>
+</ul>
+<p><strong>2. Service</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#B392F0">Injectable</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> UserService</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    constructor</span><span style="color:#E1E4E8">(@</span><span style="color:#B392F0">InjectRepository</span><span style="color:#E1E4E8">(User) </span><span style="color:#F97583">private</span><span style="color:#FFAB70"> repo</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Repository</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">User</span><span style="color:#E1E4E8">>) {}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    async</span><span style="color:#B392F0"> findAll</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.repo.</span><span style="color:#B392F0">find</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    async</span><span style="color:#B392F0"> createUser</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">data</span><span style="color:#F97583">:</span><span style="color:#B392F0"> CreateUserDto</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">        // Data validation</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">isValidUserData</span><span style="color:#E1E4E8">(data)) {</span></span>
+<span class="line"><span style="color:#F97583">            throw</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'Invalid user data'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // Business logic</span></span>
+<span class="line"><span style="color:#F97583">        const</span><span style="color:#79B8FF"> user</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> User</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        user.name </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> data.name.</span><span style="color:#B392F0">trim</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // Database operation</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.repo.</span><span style="color:#B392F0">save</span><span style="color:#E1E4E8">(user);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#B392F0"> isValidUserData</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">data</span><span style="color:#F97583">:</span><span style="color:#B392F0"> CreateUserDto</span><span style="color:#E1E4E8">)</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> boolean</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> data.name </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> data.name.</span><span style="color:#79B8FF">length</span><span style="color:#F97583"> >=</span><span style="color:#79B8FF"> 3</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>Contains business logic extracted from the Model</li>
+<li>Handles data validation and processing</li>
+<li>Manages database operations through Repository</li>
+<li>Implements application’s core functionality</li>
+<li>Acts as a bridge between Controller and Entity</li>
+</ul>
+<p>This is where the actual business logic lives:</p>
+<ul>
+<li>Validates incoming data</li>
+<li>Processes business rules</li>
+<li>Performs database operations</li>
+<li>Handles error cases</li>
+<li>Manages application state</li>
+</ul>
+<p>The Service layer ensures that all business rules are centralized and reusable across different parts of the application while maintaining clean separation of concerns.</p>
+<p><strong>3. Controller</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#B392F0">Controller</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'users'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> UserController</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    constructor</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">private</span><span style="color:#FFAB70"> userService</span><span style="color:#F97583">:</span><span style="color:#B392F0"> UserService</span><span style="color:#E1E4E8">) {}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#B392F0">Get</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#B392F0">    getUsers</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.userService.</span><span style="color:#B392F0">findAll</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#B392F0">Post</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#B392F0">    createUser</span><span style="color:#E1E4E8">(@</span><span style="color:#B392F0">Body</span><span style="color:#E1E4E8">() </span><span style="color:#FFAB70">userData</span><span style="color:#F97583">:</span><span style="color:#B392F0"> CreateUserDto</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.userService.</span><span style="color:#B392F0">create</span><span style="color:#E1E4E8">(userData);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>Uses decorators (@Controller, @Get, @Post) to define routing</li>
+<li>Injects Service through constructor</li>
+<li>Passes requests to appropriate Service methods</li>
+<li>Returns responses to the client</li>
+</ul>
+<p>This is a practical implementation of the Controller layer that:</p>
+<ul>
+<li>Receives HTTP requests</li>
+<li>Processes input data</li>
+<li>Delegates business logic to Service</li>
+<li>Returns appropriate responses</li>
+</ul>
+<p>The Controller acts as a traffic manager, directing incoming requests to the right parts of your application while maintaining clean separation of concerns.</p>
+<p><strong>4. View</strong></p>
+<p>In a full-stack application, View would be represented by:</p>
+<ul>
+<li>Templates (if using server-side rendering)</li>
+<li>Frontend (e.g., React components) consuming the API</li>
+</ul>
+<p><strong>Data flow in this code:</strong></p>
+<ol>
+<li>HTTP request hits the Controller</li>
+<li>Controller passes request to Service</li>
+<li>Service works with Model</li>
+<li>Result returns through Controller to client</li>
+</ol>  </div> </article> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2025 Mikołaj Cięszczyk. Content is licensed under CC BY-SA 4.0.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://m.webtoo.ls/@astro" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow Astro on Mastodon</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/mastodon" data-astro-cid-sz7xmlte><path fill="currentColor" d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://twitter.com/astrodotbuild" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow Astro on Twitter</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/twitter" data-astro-cid-sz7xmlte><path fill="currentColor" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://github.com/withastro/astro" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Go to Astro's GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/github" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> </div> </footer>  </body></html>

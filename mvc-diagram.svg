@@ -1,0 +1,50 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+    <!-- Boxes -->
+    <rect x="50" y="150" width="200" height="100" rx="10" fill="#E8F4FA" stroke="#2196F3" stroke-width="2"/>
+    <rect x="300" y="50" width="200" height="100" rx="10" fill="#FFF3E0" stroke="#FF9800" stroke-width="2"/>
+    <rect x="300" y="250" width="200" height="100" rx="10" fill="#E8F5E9" stroke="#4CAF50" stroke-width="2"/>
+
+    <!-- Labels -->
+    <text x="150" y="200" text-anchor="middle" font-family="Arial" font-size="20" fill="#1976D2">View</text>
+    <text x="400" y="100" text-anchor="middle" font-family="Arial" font-size="20" fill="#F57C00">Controller</text>
+    <text x="400" y="300" text-anchor="middle" font-family="Arial" font-size="20" fill="#388E3C">Model</text>
+
+    <!-- Arrows -->
+    <!-- View to Controller -->
+    <path d="M 250 180 C 280 180 280 120 300 120" fill="none" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <!-- Controller to Model -->
+    <path d="M 400 150 L 400 250" fill="none" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <!-- Model to View -->
+    <path d="M 300 280 C 280 280 280 220 250 220" fill="none" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+    <!-- Labels for arrows -->
+    <text x="270" y="160" font-family="Arial" font-size="12" fill="#666">1. User Action</text>
+    <text x="410" y="200" font-family="Arial" font-size="12" fill="#666">2. Update Model</text>
+    <text x="270" y="260" font-family="Arial" font-size="12" fill="#666">3. Update View</text>
+
+    <!-- Arrow marker definition -->
+    <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+        </marker>
+    </defs>
+
+    <!-- Descriptions -->
+    <text x="600" y="100" font-family="Arial" font-size="14">
+        <tspan x="600" dy="0" fill="#1976D2">View:</tspan>
+        <tspan x="600" dy="20" fill="#666">- UI Components</tspan>
+        <tspan x="600" dy="20" fill="#666">- Templates</tspan>
+    </text>
+
+    <text x="600" y="200" font-family="Arial" font-size="14">
+        <tspan x="600" dy="0" fill="#F57C00">Controller:</tspan>
+        <tspan x="600" dy="20" fill="#666">- Request Handling</tspan>
+        <tspan x="600" dy="20" fill="#666">- Business Logic</tspan>
+    </text>
+
+    <text x="600" y="300" font-family="Arial" font-size="14">
+        <tspan x="600" dy="0" fill="#388E3C">Model:</tspan>
+        <tspan x="600" dy="20" fill="#666">- Data Structure</tspan>
+        <tspan x="600" dy="20" fill="#666">- Business Rules</tspan>
+    </text>
+</svg>
