@@ -1,0 +1,360 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.1.7"><!-- Font preloads --><link rel="preload" href="/mc-blog//fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/mc-blog//fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://mikolajcieszczyk.github.io/mc-blog/blog/web-storage/"><!-- Primary Meta Tags --><title>Web Storage Mechanisms and Cookie Management</title><meta name="title" content="Web Storage Mechanisms and Cookie Management"><meta name="description" content="Learn about different browser storage options, their limitations, and best practices for managing cookies"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://mikolajcieszczyk.github.io/mc-blog/blog/web-storage/"><meta property="og:title" content="Web Storage Mechanisms and Cookie Management"><meta property="og:description" content="Learn about different browser storage options, their limitations, and best practices for managing cookies"><meta property="og:image" content="https://mikolajcieszczyk.github.io/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://mikolajcieszczyk.github.io/mc-blog/blog/web-storage/"><meta property="twitter:title" content="Web Storage Mechanisms and Cookie Management"><meta property="twitter:description" content="Learn about different browser storage options, their limitations, and best practices for managing cookies"><meta property="twitter:image" content="https://mikolajcieszczyk.github.io/blog-placeholder-1.jpg"><style>:root{--accent: #2337ff;--accent-dark: #000d8a;--black: 15, 18, 25;--gray: 96, 115, 159;--gray-light: 229, 233, 240;--gray-dark: 34, 41, 57;--gray-gradient: rgba(var(--gray-light), 50%), #fff;--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%)}@font-face{font-family:Atkinson;src:url(/mc-blog//fonts/atkinson-regular.woff) format("woff");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:Atkinson;src:url(/mc-blog//fonts/atkinson-bold.woff) format("woff");font-weight:700;font-style:normal;font-display:swap}body{font-family:Atkinson,sans-serif;font-size:20px;line-height:1.7;color:rgb(var(--gray-dark));margin:0;padding:0;text-align:left;background:linear-gradient(var(--gray-gradient)) no-repeat;background-size:100% 600px;word-wrap:break-word;overflow-wrap:break-word}main{width:720px;max-width:calc(100% - 2em);margin:auto;padding:3em 1em}h1,h2,h3,h4,h5,h6{margin:1rem 0;color:rgb(var(--black));line-height:1.2}h1{font-size:3.052em}h2{font-size:2.441em}h3{font-size:1.953em}h4{font-size:1.563em}h5{font-size:1.25em}strong,b{font-weight:700}a{color:var(--accent);&:hover{color:var(--accent)}}textarea{width:100%;font-size:16px}input{font-size:16px}table{width:100%}img{max-width:100%;height:auto;border-radius:8px}code{padding:2px 5px;background-color:rgb(var(--gray-light));border-radius:2px}pre{padding:1.5em;border-radius:8px;white-space:pre-wrap!important;word-wrap:break-word!important;max-width:100%;>code{all:unset;white-space:pre-wrap!important;word-wrap:break-word!important}}blockquote{border-left:4px solid var(--accent);padding:0 0 0 20px;margin:0;font-size:1.333em}hr{border:none;border-top:1px solid rgb(var(--gray-light))}ol,ul,p{margin:8px}ol{padding-left:3rem!important}ul{padding-left:4rem!important}.tldr{border:2px solid #e0e0e0;border-radius:8px;padding:10px 20px;margin:20px 0 60px;background-color:#f8f9fa;box-shadow:var(--box-shadow)}.sr-only{border:0;padding:0;margin:0;position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);clip-path:inset(50%);white-space:nowrap}@media (max-width: 720px){body{font-size:18px}main{padding:1em}}footer[data-astro-cid-sz7xmlte]{padding:1em;background:linear-gradient(var(--gray-gradient)) no-repeat;color:rgb(var(--gray));text-align:center}.social-links[data-astro-cid-sz7xmlte]{display:flex;justify-content:center;gap:1em;margin-top:1em}.social-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]{text-decoration:none;color:rgb(var(--gray))}.social-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:hover{color:rgb(var(--gray-dark))}a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}header[data-astro-cid-3ef6ksr2]{margin:0;padding:0 1em;background:#fff;box-shadow:0 2px 8px rgba(var(--black),5%)}h2[data-astro-cid-3ef6ksr2]{margin:0;font-size:1em}h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2],h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none}nav[data-astro-cid-3ef6ksr2]{display:flex;align-items:center;justify-content:space-between}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{padding:1em .5em;color:var(--black);border-bottom:4px solid transparent;text-decoration:none}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none;border-bottom-color:var(--accent)}.social-links[data-astro-cid-3ef6ksr2],.social-links[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{display:flex}@media (max-width: 720px){.social-links[data-astro-cid-3ef6ksr2]{display:none}}
+main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:820px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:rgb(var(--gray-dark))}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:rgb(var(--gray))}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}
+</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/mc-blog/" data-astro-cid-3ef6ksr2>MC Blog</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/mc-blog/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Home </a>  <a href="/mc-blog/blog" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Blog </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://github.com/mikolajcieszczyk" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Go to my GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo> <img width="1020" height="510" src="/mc-blog/web-storage.svg" alt="" data-astro-cid-bvzihdzo> </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <time datetime="2025-03-05T00:00:00.000Z"> Mar 5, 2025 </time>  </div> <h1 data-astro-cid-bvzihdzo>Web Storage Mechanisms and Cookie Management</h1> <hr data-astro-cid-bvzihdzo> </div>  <p><strong>TLDR:</strong></p>
+<div class="tldr">
+<p><strong>Web Storage Mechanisms</strong> provide different ways to store data in the browser:</p>
+<ol>
+<li>
+<p><strong>Cookies</strong> - Small text files (~4KB) sent with every HTTP request</p>
+<ul>
+<li>Session cookies: Deleted when browser closes</li>
+<li>Persistent cookies: Expire at a specific date</li>
+<li>Used for authentication, preferences, tracking</li>
+</ul>
+</li>
+<li>
+<p><strong>Local Storage</strong> - Persistent storage (~5-10MB) that persists across sessions</p>
+<ul>
+<li>Same-origin policy applies</li>
+<li>Stores data as key-value pairs</li>
+<li>Ideal for user preferences, cached data</li>
+</ul>
+</li>
+<li>
+<p><strong>Session Storage</strong> - Temporary storage (~5-10MB) that lasts only for the current session</p>
+<ul>
+<li>Same-origin policy applies</li>
+<li>Data is cleared when tab/window closes</li>
+<li>Good for temporary form data</li>
+</ul>
+</li>
+<li>
+<p><strong>IndexedDB</strong> - Low-level API for client-side storage of significant amounts of structured data</p>
+<ul>
+<li>Can store almost unlimited data (50% of free disk space)</li>
+<li>Supports complex queries and indexes</li>
+<li>Best for offline applications, large datasets</li>
+</ul>
+</li>
+</ol>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li>Use appropriate storage for your use case</li>
+<li>Be mindful of security implications</li>
+<li>Implement proper expiration for cookies</li>
+<li>Consider privacy regulations (GDPR, CCPA)</li>
+<li>Handle storage errors gracefully</li>
+</ul>
+</div>
+<h2 id="introduction-to-web-storage">Introduction to Web Storage</h2>
+<p>Modern web applications often need to store data on the client side for various reasons: to improve performance, provide offline functionality, maintain user preferences, or handle authentication. The browser offers several storage mechanisms, each with its own characteristics, limitations, and use cases.</p>
+<p>This article explores the different web storage options available to developers, focusing on their strengths, limitations, and best practices for implementation.</p>
+<h2 id="cookies">Cookies</h2>
+<p>Cookies are the oldest and most widely supported form of client-side storage. They were introduced in the early days of the web to solve the problem of maintaining state in a stateless protocol (HTTP).</p>
+<h3 id="what-are-cookies">What Are Cookies?</h3>
+<p>Cookies are small text files (typically 4KB or less) that are stored on the user’s device and sent with every HTTP request to the server. They are primarily used for:</p>
+<ul>
+<li>Authentication (session management)</li>
+<li>User preferences</li>
+<li>Shopping carts</li>
+<li>Tracking and analytics</li>
+</ul>
+<h3 id="cookie-structure">Cookie Structure</h3>
+<p>A cookie consists of several attributes:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Set-Cookie: name=value; Expires=date; Path=path; Domain=domain; Secure; HttpOnly; SameSite=Strict</span></span></code></pre>
+<ul>
+<li><strong>name=value</strong>: The actual data stored in the cookie</li>
+<li><strong>Expires/Max-Age</strong>: When the cookie should expire</li>
+<li><strong>Path</strong>: The URL path for which the cookie is valid</li>
+<li><strong>Domain</strong>: The domain for which the cookie is valid</li>
+<li><strong>Secure</strong>: Cookie is only sent over HTTPS</li>
+<li><strong>HttpOnly</strong>: Cookie cannot be accessed via JavaScript (prevents XSS)</li>
+<li><strong>SameSite</strong>: Controls when cookies are sent with cross-site requests</li>
+</ul>
+<h3 id="types-of-cookies">Types of Cookies</h3>
+<ol>
+<li>
+<p><strong>Session Cookies</strong>: Temporary cookies that are deleted when the browser is closed</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Set-Cookie: sessionId=abc123; Path=/</span></span></code></pre>
+</li>
+<li>
+<p><strong>Persistent Cookies</strong>: Cookies with an expiration date that remain until that date</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Set-Cookie: userId=123; Expires=Wed, 13 Jan 2025 22:23:01 GMT; Path=/</span></span></code></pre>
+</li>
+<li>
+<p><strong>Third-Party Cookies</strong>: Cookies set by a domain other than the one being visited</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Set-Cookie: trackingId=xyz789; Domain=.advertiser.com; Path=/</span></span></code></pre>
+</li>
+</ol>
+<h3 id="setting-and-reading-cookies">Setting and Reading Cookies</h3>
+<h4 id="javascript">JavaScript</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Setting a cookie</span></span>
+<span class="line"><span style="color:#E1E4E8">document.cookie </span><span style="color:#F97583">=</span></span>
+<span class="line"><span style="color:#9ECBFF">  "username=John Doe; expires=Thu, 18 Dec 2025 12:00:00 UTC; path=/"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Reading cookies</span></span>
+<span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> getCookie</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">name</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> value</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> `; ${</span><span style="color:#E1E4E8">document</span><span style="color:#9ECBFF">.</span><span style="color:#E1E4E8">cookie</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> parts</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> value.</span><span style="color:#B392F0">split</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">`; ${</span><span style="color:#E1E4E8">name</span><span style="color:#9ECBFF">}=`</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (parts.</span><span style="color:#79B8FF">length</span><span style="color:#F97583"> ===</span><span style="color:#79B8FF"> 2</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">return</span><span style="color:#E1E4E8"> parts.</span><span style="color:#B392F0">pop</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">split</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">";"</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">shift</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> username</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> getCookie</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"username"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h4 id="server-side-nodejsexpress">Server-Side (Node.js/Express)</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Setting a cookie</span></span>
+<span class="line"><span style="color:#E1E4E8">res.</span><span style="color:#B392F0">cookie</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"username"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"John Doe"</span><span style="color:#E1E4E8">, {</span></span>
+<span class="line"><span style="color:#E1E4E8">  maxAge: </span><span style="color:#79B8FF">900000</span><span style="color:#E1E4E8">, </span><span style="color:#6A737D">// 15 minutes</span></span>
+<span class="line"><span style="color:#E1E4E8">  httpOnly: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  secure: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  sameSite: </span><span style="color:#9ECBFF">"strict"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Reading cookies</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> username</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> req.cookies.username;</span></span></code></pre>
+<h3 id="cookie-limitations">Cookie Limitations</h3>
+<ul>
+<li><strong>Size</strong>: Limited to 4KB per cookie</li>
+<li><strong>Quantity</strong>: Usually limited to 50 cookies per domain</li>
+<li><strong>Security</strong>: Vulnerable to XSS and CSRF attacks if not properly configured</li>
+<li><strong>Performance</strong>: Sent with every HTTP request, increasing bandwidth usage</li>
+</ul>
+<h2 id="local-storage">Local Storage</h2>
+<p>Local Storage is part of the Web Storage API introduced in HTML5. It provides a way to store larger amounts of data (typically 5-10MB) that persists across browser sessions.</p>
+<h3 id="what-is-local-storage">What Is Local Storage?</h3>
+<p>Local Storage is a key-value storage mechanism that:</p>
+<ul>
+<li>Persists data even after the browser is closed</li>
+<li>Is limited to the same origin (domain, protocol, and port)</li>
+<li>Stores data as strings (objects must be serialized)</li>
+<li>Has a larger storage capacity than cookies</li>
+</ul>
+<h3 id="using-local-storage">Using Local Storage</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Storing data</span></span>
+<span class="line"><span style="color:#E1E4E8">localStorage.</span><span style="color:#B392F0">setItem</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"username"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"John Doe"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">localStorage.</span><span style="color:#B392F0">setItem</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#9ECBFF">  "preferences"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">stringify</span><span style="color:#E1E4E8">({ theme: </span><span style="color:#9ECBFF">"dark"</span><span style="color:#E1E4E8">, fontSize: </span><span style="color:#79B8FF">14</span><span style="color:#E1E4E8"> })</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Retrieving data</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> username</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> localStorage.</span><span style="color:#B392F0">getItem</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"username"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> preferences</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">parse</span><span style="color:#E1E4E8">(localStorage.</span><span style="color:#B392F0">getItem</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"preferences"</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Removing data</span></span>
+<span class="line"><span style="color:#E1E4E8">localStorage.</span><span style="color:#B392F0">removeItem</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"username"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Clearing all data</span></span>
+<span class="line"><span style="color:#E1E4E8">localStorage.</span><span style="color:#B392F0">clear</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<h3 id="local-storage-limitations">Local Storage Limitations</h3>
+<ul>
+<li><strong>Same-Origin Policy</strong>: Data is only accessible from the same origin</li>
+<li><strong>String Storage</strong>: Can only store strings (objects must be serialized)</li>
+<li><strong>Synchronous API</strong>: Operations are blocking, which can impact performance</li>
+<li><strong>No Expiration</strong>: Data persists until explicitly removed</li>
+<li><strong>Storage Limits</strong>: Typically 5-10MB, varies by browser</li>
+</ul>
+<h2 id="session-storage">Session Storage</h2>
+<p>Session Storage is similar to Local Storage but with one key difference: data stored in Session Storage is cleared when the browser tab or window is closed.</p>
+<h3 id="what-is-session-storage">What Is Session Storage?</h3>
+<p>Session Storage:</p>
+<ul>
+<li>Stores data for the duration of a page session</li>
+<li>Data is cleared when the tab/window is closed</li>
+<li>Is limited to the same origin</li>
+<li>Has the same storage capacity as Local Storage</li>
+</ul>
+<h3 id="using-session-storage">Using Session Storage</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Storing data</span></span>
+<span class="line"><span style="color:#E1E4E8">sessionStorage.</span><span style="color:#B392F0">setItem</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#9ECBFF">  "formData"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">stringify</span><span style="color:#E1E4E8">({ name: </span><span style="color:#9ECBFF">"John"</span><span style="color:#E1E4E8">, email: </span><span style="color:#9ECBFF">"john@example.com"</span><span style="color:#E1E4E8"> })</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Retrieving data</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> formData</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">parse</span><span style="color:#E1E4E8">(sessionStorage.</span><span style="color:#B392F0">getItem</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"formData"</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Removing data</span></span>
+<span class="line"><span style="color:#E1E4E8">sessionStorage.</span><span style="color:#B392F0">removeItem</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"formData"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Clearing all data</span></span>
+<span class="line"><span style="color:#E1E4E8">sessionStorage.</span><span style="color:#B392F0">clear</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<h3 id="session-storage-use-cases">Session Storage Use Cases</h3>
+<ul>
+<li>Storing form data temporarily</li>
+<li>Caching API responses for the current session</li>
+<li>Maintaining state during a multi-step process</li>
+<li>Storing user input that shouldn’t persist</li>
+</ul>
+<h2 id="indexeddb">IndexedDB</h2>
+<p>IndexedDB is a low-level API for client-side storage of significant amounts of structured data. It’s designed for applications that need to store large amounts of data and perform complex queries.</p>
+<h3 id="what-is-indexeddb">What Is IndexedDB?</h3>
+<p>IndexedDB:</p>
+<ul>
+<li>Can store almost unlimited data (typically 50% of free disk space)</li>
+<li>Supports complex queries and indexes</li>
+<li>Is asynchronous (doesn’t block the main thread)</li>
+<li>Stores structured data (not just strings)</li>
+<li>Is ideal for offline applications</li>
+</ul>
+<h3 id="using-indexeddb">Using IndexedDB</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Opening a database</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> request</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> indexedDB.</span><span style="color:#B392F0">open</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"MyDatabase"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Creating object stores</span></span>
+<span class="line"><span style="color:#E1E4E8">request.</span><span style="color:#B392F0">onupgradeneeded</span><span style="color:#F97583"> =</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> db</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> event.target.result;</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> store</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> db.</span><span style="color:#B392F0">createObjectStore</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"users"</span><span style="color:#E1E4E8">, { keyPath: </span><span style="color:#9ECBFF">"id"</span><span style="color:#E1E4E8"> });</span></span>
+<span class="line"><span style="color:#E1E4E8">  store.</span><span style="color:#B392F0">createIndex</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"name"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"name"</span><span style="color:#E1E4E8">, { unique: </span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8"> });</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Adding data</span></span>
+<span class="line"><span style="color:#E1E4E8">request.</span><span style="color:#B392F0">onsuccess</span><span style="color:#F97583"> =</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> db</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> event.target.result;</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> transaction</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> db.</span><span style="color:#B392F0">transaction</span><span style="color:#E1E4E8">([</span><span style="color:#9ECBFF">"users"</span><span style="color:#E1E4E8">], </span><span style="color:#9ECBFF">"readwrite"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> store</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> transaction.</span><span style="color:#B392F0">objectStore</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"users"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  store.</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">({ id: </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, name: </span><span style="color:#9ECBFF">"John Doe"</span><span style="color:#E1E4E8">, email: </span><span style="color:#9ECBFF">"john@example.com"</span><span style="color:#E1E4E8"> });</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Retrieving data</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> transaction</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> db.</span><span style="color:#B392F0">transaction</span><span style="color:#E1E4E8">([</span><span style="color:#9ECBFF">"users"</span><span style="color:#E1E4E8">], </span><span style="color:#9ECBFF">"readonly"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> store</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> transaction.</span><span style="color:#B392F0">objectStore</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"users"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> request</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> store.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">request.</span><span style="color:#B392F0">onsuccess</span><span style="color:#F97583"> =</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> user</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> event.target.result;</span></span>
+<span class="line"><span style="color:#E1E4E8">  console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(user.name); </span><span style="color:#6A737D">// "John Doe"</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<h3 id="indexeddb-limitations">IndexedDB Limitations</h3>
+<ul>
+<li><strong>Complexity</strong>: More complex API compared to Local/Session Storage</li>
+<li><strong>Browser Support</strong>: Not supported in older browsers</li>
+<li><strong>Asynchronous</strong>: Requires callback-based or Promise-based code</li>
+<li><strong>Same-Origin Policy</strong>: Data is only accessible from the same origin</li>
+</ul>
+<h2 id="web-storage-security-considerations">Web Storage Security Considerations</h2>
+<h3 id="cross-site-scripting-xss">Cross-Site Scripting (XSS)</h3>
+<p>XSS attacks can steal data from any storage mechanism if not properly protected:</p>
+<ul>
+<li>Use HttpOnly flag for cookies containing sensitive data</li>
+<li>Sanitize user input before storing it</li>
+<li>Implement Content Security Policy (CSP)</li>
+</ul>
+<h3 id="cross-site-request-forgery-csrf">Cross-Site Request Forgery (CSRF)</h3>
+<p>CSRF attacks can be mitigated by:</p>
+<ul>
+<li>Using SameSite attribute for cookies</li>
+<li>Implementing CSRF tokens</li>
+<li>Validating the origin of requests</li>
+</ul>
+<h3 id="data-privacy">Data Privacy</h3>
+<p>Consider privacy regulations like GDPR and CCPA:</p>
+<ul>
+<li>Only store necessary data</li>
+<li>Implement proper data retention policies</li>
+<li>Provide users with control over their data</li>
+<li>Document what data you store and why</li>
+</ul>
+<h2 id="best-practices-for-web-storage">Best Practices for Web Storage</h2>
+<h3 id="1-choose-the-right-storage-mechanism">1. Choose the Right Storage Mechanism</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Storage Type</th><th>Use Case</th><th>Limitations</th></tr></thead><tbody><tr><td>Cookies</td><td>Authentication, small preferences</td><td>4KB, sent with requests</td></tr><tr><td>Local Storage</td><td>User preferences, cached data</td><td>5-10MB, string-only</td></tr><tr><td>Session Storage</td><td>Temporary form data</td><td>Cleared on tab close</td></tr><tr><td>IndexedDB</td><td>Large datasets, offline apps</td><td>Complex API</td></tr></tbody></table>
+<h3 id="2-implement-proper-error-handling">2. Implement Proper Error Handling</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  localStorage.</span><span style="color:#B392F0">setItem</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"key"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"value"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (e) {</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (e.name </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> "QuotaExceededError"</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">    // Handle storage full</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Storage is full"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    // Handle other errors</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Error saving to storage:"</span><span style="color:#E1E4E8">, e);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="3-use-feature-detection">3. Use Feature Detection</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> isLocalStorageAvailable</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">  try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> test</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "test"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    localStorage.</span><span style="color:#B392F0">setItem</span><span style="color:#E1E4E8">(test, test);</span></span>
+<span class="line"><span style="color:#E1E4E8">    localStorage.</span><span style="color:#B392F0">removeItem</span><span style="color:#E1E4E8">(test);</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">  } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (e) {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (</span><span style="color:#B392F0">isLocalStorageAvailable</span><span style="color:#E1E4E8">()) {</span></span>
+<span class="line"><span style="color:#6A737D">  // Use localStorage</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">  // Fallback to cookies or other storage</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="4-implement-data-expiration">4. Implement Data Expiration</h3>
+<p>For Local Storage and Session Storage (which don’t have built-in expiration):</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Storing data with expiration</span></span>
+<span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> setItemWithExpiration</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">key</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">value</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">expirationInMinutes</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> item</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    value: value,</span></span>
+<span class="line"><span style="color:#E1E4E8">    timestamp: </span><span style="color:#F97583">new</span><span style="color:#B392F0"> Date</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">getTime</span><span style="color:#E1E4E8">(),</span></span>
+<span class="line"><span style="color:#E1E4E8">    expirationInMinutes: expirationInMinutes,</span></span>
+<span class="line"><span style="color:#E1E4E8">  };</span></span>
+<span class="line"><span style="color:#E1E4E8">  localStorage.</span><span style="color:#B392F0">setItem</span><span style="color:#E1E4E8">(key, </span><span style="color:#79B8FF">JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">stringify</span><span style="color:#E1E4E8">(item));</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Retrieving data with expiration check</span></span>
+<span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> getItemWithExpiration</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">key</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> itemStr</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> localStorage.</span><span style="color:#B392F0">getItem</span><span style="color:#E1E4E8">(key);</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">itemStr) </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> item</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">parse</span><span style="color:#E1E4E8">(itemStr);</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> now</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Date</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">getTime</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> expirationTime</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> item.timestamp </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> item.expirationInMinutes </span><span style="color:#F97583">*</span><span style="color:#79B8FF"> 60</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> 1000</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (now </span><span style="color:#F97583">></span><span style="color:#E1E4E8"> expirationTime) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    localStorage.</span><span style="color:#B392F0">removeItem</span><span style="color:#E1E4E8">(key);</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> item.value;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="5-secure-sensitive-data">5. Secure Sensitive Data</h3>
+<ul>
+<li>Never store passwords or sensitive tokens in Local/Session Storage</li>
+<li>Use HttpOnly cookies for authentication tokens</li>
+<li>Consider encryption for sensitive data if it must be stored client-side</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>Web storage mechanisms provide powerful options for storing data in the browser, each with its own strengths and limitations. By understanding these options and following best practices, developers can create more robust, secure, and user-friendly web applications.</p>
+<p>Remember that client-side storage should complement, not replace, server-side storage. Sensitive data should always be stored securely on the server, with client-side storage used primarily for improving user experience and application performance.</p>
+<p>Choose the right storage mechanism for your specific use case, implement proper security measures, and always consider privacy regulations when storing user data.</p>  </div> </article> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2025 Mikołaj Cięszczyk. Content is licensed under CC BY-SA 4.0.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://m.webtoo.ls/@astro" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow Astro on Mastodon</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/mastodon" data-astro-cid-sz7xmlte><path fill="currentColor" d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://twitter.com/astrodotbuild" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow Astro on Twitter</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/twitter" data-astro-cid-sz7xmlte><path fill="currentColor" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://github.com/withastro/astro" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Go to Astro's GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/github" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> </div> </footer>  </body></html>
