@@ -1,7 +1,7 @@
 ---
 title: "Proxy - Network Communication Intermediary"
 description: "Learn about the concept of proxy, its types, applications, and benefits in network communication"
-pubDate: "Apr 15 2025"
+pubDate: "Mar 22 2025"
 heroImage: "/mc-blog/proxy.svg"
 ---
 
