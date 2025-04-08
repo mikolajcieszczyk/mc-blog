@@ -1,0 +1,614 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.1.7"><!-- Font preloads --><link rel="preload" href="/mc-blog//fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/mc-blog//fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://mikolajcieszczyk.github.io/mc-blog/blog/delivery-models/"><!-- Primary Meta Tags --><title>Delivery Models (XaaS)</title><meta name="title" content="Delivery Models (XaaS)"><meta name="description" content="Overview of different cloud service delivery models and beyond"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://mikolajcieszczyk.github.io/mc-blog/blog/delivery-models/"><meta property="og:title" content="Delivery Models (XaaS)"><meta property="og:description" content="Overview of different cloud service delivery models and beyond"><meta property="og:image" content="https://mikolajcieszczyk.github.io/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://mikolajcieszczyk.github.io/mc-blog/blog/delivery-models/"><meta property="twitter:title" content="Delivery Models (XaaS)"><meta property="twitter:description" content="Overview of different cloud service delivery models and beyond"><meta property="twitter:image" content="https://mikolajcieszczyk.github.io/blog-placeholder-1.jpg"><style>:root{--accent: #2337ff;--accent-dark: #000d8a;--black: 15, 18, 25;--gray: 96, 115, 159;--gray-light: 229, 233, 240;--gray-dark: 34, 41, 57;--gray-gradient: rgba(var(--gray-light), 50%), #fff;--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%)}@font-face{font-family:Atkinson;src:url(/mc-blog//fonts/atkinson-regular.woff) format("woff");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:Atkinson;src:url(/mc-blog//fonts/atkinson-bold.woff) format("woff");font-weight:700;font-style:normal;font-display:swap}body{font-family:Atkinson,sans-serif;font-size:20px;line-height:1.7;color:rgb(var(--gray-dark));margin:0;padding:0;text-align:left;background:linear-gradient(var(--gray-gradient)) no-repeat;background-size:100% 600px;word-wrap:break-word;overflow-wrap:break-word}main{width:720px;max-width:calc(100% - 2em);margin:auto;padding:3em 1em}h1,h2,h3,h4,h5,h6{margin:1rem 0;color:rgb(var(--black));line-height:1.2}h1{font-size:3.052em}h2{font-size:2.441em}h3{font-size:1.953em}h4{font-size:1.563em}h5{font-size:1.25em}strong,b{font-weight:700}a{color:var(--accent);&:hover{color:var(--accent)}}textarea{width:100%;font-size:16px}input{font-size:16px}table{width:100%}img{max-width:100%;height:auto;border-radius:8px}code{padding:2px 5px;background-color:rgb(var(--gray-light));border-radius:2px}pre{padding:1.5em;border-radius:8px;white-space:pre-wrap!important;word-wrap:break-word!important;max-width:100%;>code{all:unset;white-space:pre-wrap!important;word-wrap:break-word!important}}blockquote{border-left:4px solid var(--accent);padding:0 0 0 20px;margin:0;font-size:1.333em}hr{border:none;border-top:1px solid rgb(var(--gray-light))}ol,ul,p{margin:8px}ol{padding-left:3rem!important}ul{padding-left:4rem!important}.tldr{border:2px solid #e0e0e0;border-radius:8px;padding:10px 20px;margin:20px 0 60px;background-color:#f8f9fa;box-shadow:var(--box-shadow)}.sr-only{border:0;padding:0;margin:0;position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);clip-path:inset(50%);white-space:nowrap}@media (max-width: 720px){body{font-size:18px}main{padding:1em}}footer[data-astro-cid-sz7xmlte]{padding:1em;background:linear-gradient(var(--gray-gradient)) no-repeat;color:rgb(var(--gray));text-align:center}.social-links[data-astro-cid-sz7xmlte]{display:flex;justify-content:center;gap:1em;margin-top:1em}.social-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]{text-decoration:none;color:rgb(var(--gray))}.social-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:hover{color:rgb(var(--gray-dark))}a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}header[data-astro-cid-3ef6ksr2]{margin:0;padding:0 1em;background:#fff;box-shadow:0 2px 8px rgba(var(--black),5%)}h2[data-astro-cid-3ef6ksr2]{margin:0;font-size:1em}h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2],h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none}nav[data-astro-cid-3ef6ksr2]{display:flex;align-items:center;justify-content:space-between}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{padding:1em .5em;color:var(--black);border-bottom:4px solid transparent;text-decoration:none}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none;border-bottom-color:var(--accent)}.social-links[data-astro-cid-3ef6ksr2],.social-links[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{display:flex}@media (max-width: 720px){.social-links[data-astro-cid-3ef6ksr2]{display:none}}
+main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:820px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:rgb(var(--gray-dark))}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:rgb(var(--gray))}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}.scroll-to-top[data-astro-cid-bvzihdzo]{position:fixed;bottom:30px;right:30px;background-color:#000;color:#fff;border:none;border-radius:50%;width:60px;height:60px;cursor:pointer;display:none;opacity:.8;transition:opacity .3s;box-shadow:0 2px 10px #0003;padding:0;display:flex;align-items:center;justify-content:center}.scroll-to-top[data-astro-cid-bvzihdzo]:hover{opacity:1}.scroll-to-top[data-astro-cid-bvzihdzo] svg[data-astro-cid-bvzihdzo]{width:30px;height:30px;fill:#fff}
+</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/mc-blog/" data-astro-cid-3ef6ksr2>MC Blog</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/mc-blog/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Home </a>  <a href="/mc-blog/blog" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Blog </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://github.com/mikolajcieszczyk" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Go to my GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo> <img width="1020" height="510" src="/mc-blog/xaas.webp" alt="" data-astro-cid-bvzihdzo> </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <time datetime="2025-04-08T00:00:00.000Z"> Apr 8, 2025 </time>  </div> <h1 data-astro-cid-bvzihdzo>Delivery Models (XaaS)</h1> <hr data-astro-cid-bvzihdzo> </div>  <p><strong>TLDR:</strong></p>
+<div class="tldr">
+<p>XaaS (Everything as a Service) is a general term for various service delivery models over the internet. The most popular models are:</p>
+<ul>
+<li><strong>SaaS</strong> - software as a service (e.g., Netflix, Dropbox)</li>
+<li><strong>PaaS</strong> - platform as a service (e.g., Heroku, Google App Engine)</li>
+<li><strong>IaaS</strong> - infrastructure as a service (e.g., AWS EC2, Azure VM)</li>
+<li><strong>FaaS</strong> - function as a service (e.g., AWS Lambda)</li>
+<li><strong>BaaS</strong> - backend as a service (e.g., Firebase)</li>
+</ul>
+<p>The choice of model depends on project needs, budget, and technical requirements. Often, enterprises use multiple models simultaneously.</p>
+</div>
+<h2 id="what-is-xaas">What is XaaS?</h2>
+<p>XaaS (Everything as a Service) is a business model where various services are delivered over the internet. Instead of buying and installing software locally, users access services available in the cloud.</p>
+<p>This model offers many benefits:</p>
+<ul>
+<li><strong>Flexibility</strong> - ability to adapt services to needs</li>
+<li><strong>Scalability</strong> - easy increase or decrease of resources</li>
+<li><strong>Cost savings</strong> - payment only for used resources</li>
+<li><strong>Availability</strong> - services available from anywhere</li>
+<li><strong>Updates</strong> - automatic updates without user intervention</li>
+</ul>
+<h2 id="functional-patterns">Functional Patterns</h2>
+<h3 id="crud-create-read-update-delete">CRUD (Create, Read, Update, Delete)</h3>
+<p>Basic data operations that can occur in any application. CRUD is the foundation of most applications, allowing data management.</p>
+<p><strong>Create</strong> - adding new records to the database
+<strong>Read</strong> - retrieving existing records
+<strong>Update</strong> - modifying existing records
+<strong>Delete</strong> - removing records from the database</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example of CRUD implementation in JavaScript</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> UserService</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">  // Create</span></span>
+<span class="line"><span style="color:#B392F0">  createUser</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">userData</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> db.users.</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(userData);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">  // Read</span></span>
+<span class="line"><span style="color:#B392F0">  getUser</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">userId</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> db.users.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(userId);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">  // Update</span></span>
+<span class="line"><span style="color:#B392F0">  updateUser</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">userId</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">userData</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> db.users.</span><span style="color:#B392F0">update</span><span style="color:#E1E4E8">(userId, userData);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">  // Delete</span></span>
+<span class="line"><span style="color:#B392F0">  deleteUser</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">userId</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> db.users.</span><span style="color:#B392F0">delete</span><span style="color:#E1E4E8">(userId);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><strong>CRUD Applications:</strong></p>
+<ul>
+<li>Content Management Systems (CMS)</li>
+<li>E-commerce applications</li>
+<li>User management systems</li>
+<li>Task management applications (todo list)</li>
+</ul>
+<h3 id="rest-representational-state-transfer">REST (Representational State Transfer)</h3>
+<p>An architectural pattern for APIs that can be used in any application. REST defines a set of principles and constraints that help create scalable and reliable applications.</p>
+<p><strong>Key REST Principles:</strong></p>
+<ul>
+<li><strong>Statelessness</strong> - each request contains all information needed for processing</li>
+<li><strong>Client-Server</strong> - separation of user interface from data storage</li>
+<li><strong>Cache</strong> - responses can be cached</li>
+<li><strong>Uniform Interface</strong> - consistent way of interacting with resources</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example of REST API in Express.js</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> express</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"express"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> app</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> express</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// GET - retrieving data</span></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/users"</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">(users);</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// POST - creating data</span></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">post</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/users"</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> newUser</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> req.body;</span></span>
+<span class="line"><span style="color:#E1E4E8">  users.</span><span style="color:#B392F0">push</span><span style="color:#E1E4E8">(newUser);</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">status</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">201</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">(newUser);</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// PUT - updating data</span></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">put</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/users/:id"</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> id</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> req.params.id;</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> updatedUser</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> req.body;</span></span>
+<span class="line"><span style="color:#6A737D">  // update logic</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">(updatedUser);</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// DELETE - deleting data</span></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">delete</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/users/:id"</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> id</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> req.params.id;</span></span>
+<span class="line"><span style="color:#6A737D">  // deletion logic</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">status</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">204</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">send</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span></code></pre>
+<p><strong>REST Advantages:</strong></p>
+<ul>
+<li>Simple and understandable</li>
+<li>Uses standard HTTP methods</li>
+<li>Easy to test and debug</li>
+<li>Good documentation and community support</li>
+</ul>
+<h3 id="mvcmvvm-model-view-controllerviewmodel">MVC/MVVM (Model-View-Controller/ViewModel)</h3>
+<p>An architectural pattern that can be applied to any application. MVC/MVVM helps organize code by dividing it into logical components.</p>
+<p><strong>MVC (Model-View-Controller):</strong></p>
+<ul>
+<li><strong>Model</strong> - represents data and business logic</li>
+<li><strong>View</strong> - represents the user interface</li>
+<li><strong>Controller</strong> - handles user requests and updates the model</li>
+</ul>
+<p><strong>MVVM (Model-View-ViewModel):</strong></p>
+<ul>
+<li><strong>Model</strong> - represents data and business logic</li>
+<li><strong>View</strong> - represents the user interface</li>
+<li><strong>ViewModel</strong> - mediates between Model and View, transforming data</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example of MVC in JavaScript</span></span>
+<span class="line"><span style="color:#6A737D">// Model</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> UserModel</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  constructor</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#79B8FF">    this</span><span style="color:#E1E4E8">.users </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [];</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">  getUsers</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.users;</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">  addUser</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">user</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">    this</span><span style="color:#E1E4E8">.users.</span><span style="color:#B392F0">push</span><span style="color:#E1E4E8">(user);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// View</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> UserView</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">  render</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">users</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> userList</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"user-list"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    userList.innerHTML </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> users.</span><span style="color:#B392F0">map</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">user</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#9ECBFF"> `&#x3C;li>${</span><span style="color:#E1E4E8">user</span><span style="color:#9ECBFF">.</span><span style="color:#E1E4E8">name</span><span style="color:#9ECBFF">}&#x3C;/li>`</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">join</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Controller</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> UserController</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  constructor</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">model</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">view</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">    this</span><span style="color:#E1E4E8">.model </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> model;</span></span>
+<span class="line"><span style="color:#79B8FF">    this</span><span style="color:#E1E4E8">.view </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> view;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // Event handling</span></span>
+<span class="line"><span style="color:#E1E4E8">    document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"add-user-form"</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">addEventListener</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"submit"</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">      e.</span><span style="color:#B392F0">preventDefault</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">      const</span><span style="color:#79B8FF"> name</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"user-name"</span><span style="color:#E1E4E8">).value;</span></span>
+<span class="line"><span style="color:#79B8FF">      this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">addUser</span><span style="color:#E1E4E8">({ name });</span></span>
+<span class="line"><span style="color:#E1E4E8">    });</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">  addUser</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">user</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">    this</span><span style="color:#E1E4E8">.model.</span><span style="color:#B392F0">addUser</span><span style="color:#E1E4E8">(user);</span></span>
+<span class="line"><span style="color:#79B8FF">    this</span><span style="color:#E1E4E8">.view.</span><span style="color:#B392F0">render</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.model.</span><span style="color:#B392F0">getUsers</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><strong>MVC/MVVM Advantages:</strong></p>
+<ul>
+<li>Separation of responsibilities</li>
+<li>Easier testing</li>
+<li>Better code organization</li>
+<li>Support for team collaboration</li>
+</ul>
+<h2 id="application-types-by-platformenvironment">Application Types (by platform/environment)</h2>
+<h3 id="desktop">Desktop</h3>
+<p>Applications running on a computer. Desktop applications are installed locally on the user’s device and operate independently of internet connection.</p>
+<p><strong>Desktop Application Advantages:</strong></p>
+<ul>
+<li>Faster access to functions</li>
+<li>Offline operation</li>
+<li>Full access to device resources</li>
+<li>Better performance for complex operations</li>
+</ul>
+<p><strong>Technologies:</strong></p>
+<ul>
+<li>Electron (JavaScript)</li>
+<li>.NET (C#)</li>
+<li>Java (Swing, JavaFX)</li>
+<li>Python (PyQt, Tkinter)</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example of a desktop application in Electron</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#E1E4E8"> { </span><span style="color:#79B8FF">app</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">BrowserWindow</span><span style="color:#E1E4E8"> } </span><span style="color:#F97583">=</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"electron"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> createWindow</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> win</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> BrowserWindow</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">    width: </span><span style="color:#79B8FF">800</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    height: </span><span style="color:#79B8FF">600</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    webPreferences: {</span></span>
+<span class="line"><span style="color:#E1E4E8">      nodeIntegration: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">  });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  win.</span><span style="color:#B392F0">loadFile</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"index.html"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">whenReady</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">(createWindow);</span></span></code></pre>
+<h3 id="web">Web</h3>
+<p>Applications running in a browser. Web applications are accessible via the internet and do not require installation.</p>
+<p><strong>Web Application Advantages:</strong></p>
+<ul>
+<li>Access from any device</li>
+<li>No installation required</li>
+<li>Automatic updates</li>
+<li>Easier deployment</li>
+</ul>
+<p><strong>Technologies:</strong></p>
+<ul>
+<li>React, Vue, Angular (JavaScript)</li>
+<li>HTML, CSS, JavaScript</li>
+<li>PHP, Python, Ruby (backend)</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example of a web application in React</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> React, { useState } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "react"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> App</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">count</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">setCount</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#85E89D">h1</span><span style="color:#E1E4E8">>Counter: {count}&#x3C;/</span><span style="color:#85E89D">h1</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#85E89D">button</span><span style="color:#B392F0"> onClick</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{() </span><span style="color:#F97583">=></span><span style="color:#B392F0"> setCount</span><span style="color:#E1E4E8">(count </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">)}>Increment&#x3C;/</span><span style="color:#85E89D">button</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  );</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#E1E4E8"> App;</span></span></code></pre>
+<h3 id="mobile">Mobile</h3>
+<p>Applications running on mobile devices. Mobile applications are installed on smartphones and tablets.</p>
+<p><strong>Mobile Application Advantages:</strong></p>
+<ul>
+<li>Access to device features (camera, GPS)</li>
+<li>Push notifications</li>
+<li>Offline operation</li>
+<li>Better user experience</li>
+</ul>
+<p><strong>Technologies:</strong></p>
+<ul>
+<li>React Native (JavaScript)</li>
+<li>Flutter (Dart)</li>
+<li>Swift (iOS)</li>
+<li>Kotlin (Android)</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example of a mobile application in React Native</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> React </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "react"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { View, Text, Button } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "react-native"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> App</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#79B8FF">View</span><span style="color:#B392F0"> style</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{{ flex: </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, justifyContent: </span><span style="color:#9ECBFF">"center"</span><span style="color:#E1E4E8">, alignItems: </span><span style="color:#9ECBFF">"center"</span><span style="color:#E1E4E8"> }}></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#79B8FF">Text</span><span style="color:#E1E4E8">>Welcome to the mobile app!&#x3C;/</span><span style="color:#79B8FF">Text</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#79B8FF">Button</span><span style="color:#B392F0"> title</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"Click me"</span><span style="color:#B392F0"> onPress</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{() </span><span style="color:#F97583">=></span><span style="color:#B392F0"> alert</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Clicked!"</span><span style="color:#E1E4E8">)} /></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#79B8FF">View</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  );</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#E1E4E8"> App;</span></span></code></pre>
+<h3 id="iot">IoT</h3>
+<p>Applications running on internet-connected devices. IoT applications are used to collect and analyze data from sensors and devices.</p>
+<p><strong>IoT Application Advantages:</strong></p>
+<ul>
+<li>Process automation</li>
+<li>Real-time data collection</li>
+<li>Device monitoring and control</li>
+<li>Resource optimization</li>
+</ul>
+<p><strong>Technologies:</strong></p>
+<ul>
+<li>Node.js, Python</li>
+<li>MQTT, CoAP (communication protocols)</li>
+<li>Arduino, Raspberry Pi (hardware platforms)</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example of an IoT application with Node.js and MQTT</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> mqtt</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"mqtt"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> client</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> mqtt.</span><span style="color:#B392F0">connect</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"mqtt://broker.hivemq.com"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">client.</span><span style="color:#B392F0">on</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"connect"</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  client.</span><span style="color:#B392F0">subscribe</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"sensor/temperature"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">client.</span><span style="color:#B392F0">on</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"message"</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">topic</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">message</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">`Received data from sensor: ${</span><span style="color:#E1E4E8">message</span><span style="color:#9ECBFF">.</span><span style="color:#B392F0">toString</span><span style="color:#9ECBFF">()</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span></code></pre>
+<h2 id="application-architectures">Application Architectures</h2>
+<h3 id="monolithic">Monolithic</h3>
+<p>Applications where all components are in a single application. Monolithic applications are simpler to develop and deploy but can be harder to scale.</p>
+<p><strong>Monolithic Application Advantages:</strong></p>
+<ul>
+<li>Simpler development</li>
+<li>Easier deployment</li>
+<li>Less complexity</li>
+<li>Faster development for small teams</li>
+</ul>
+<p><strong>Monolithic Application Disadvantages:</strong></p>
+<ul>
+<li>Harder scaling</li>
+<li>Dependency between components</li>
+<li>Longer deployment time</li>
+<li>More difficult testing</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example of a monolithic application in Node.js</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> express</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"express"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> app</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> express</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Routing</span></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/"</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">send</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Home page"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/users"</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">send</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"User list"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/products"</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">send</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Product list"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Server startup</span></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">listen</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">3000</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Server running on port 3000"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span></code></pre>
+<h3 id="microservices">Microservices</h3>
+<p>Applications divided into small, independent services. Microservices allow for independent scaling and deployment of individual components.</p>
+<p><strong>Microservices Advantages:</strong></p>
+<ul>
+<li>Independent scaling</li>
+<li>Independent deployment</li>
+<li>Technological flexibility</li>
+<li>Better fault tolerance</li>
+</ul>
+<p><strong>Microservices Disadvantages:</strong></p>
+<ul>
+<li>Increased complexity</li>
+<li>More difficult management</li>
+<li>Higher operational costs</li>
+<li>More difficult diagnostics</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example of a microservice in Node.js</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> express</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"express"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> app</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> express</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// User microservice</span></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/users"</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">([</span></span>
+<span class="line"><span style="color:#E1E4E8">    { id: </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, name: </span><span style="color:#9ECBFF">"John"</span><span style="color:#E1E4E8"> },</span></span>
+<span class="line"><span style="color:#E1E4E8">    { id: </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, name: </span><span style="color:#9ECBFF">"Anna"</span><span style="color:#E1E4E8"> },</span></span>
+<span class="line"><span style="color:#E1E4E8">  ]);</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">listen</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">3001</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"User microservice running on port 3001"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span></code></pre>
+<h3 id="serverless">Serverless</h3>
+<p>Applications running in the cloud without a permanent server. Serverless allows payment only for actually performed operations.</p>
+<p><strong>Serverless Advantages:</strong></p>
+<ul>
+<li>Payment only for usage</li>
+<li>Automatic scaling</li>
+<li>No server management</li>
+<li>Faster deployment</li>
+</ul>
+<p><strong>Serverless Disadvantages:</strong></p>
+<ul>
+<li>Cold start</li>
+<li>Time limitations</li>
+<li>Debugging complexity</li>
+<li>Dependency on provider</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example of a serverless function in AWS Lambda</span></span>
+<span class="line"><span style="color:#79B8FF">exports</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">handler</span><span style="color:#F97583"> =</span><span style="color:#F97583"> async</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> response</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    statusCode: </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    body: </span><span style="color:#79B8FF">JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">stringify</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">      message: </span><span style="color:#9ECBFF">"Hello from Lambda!"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    }),</span></span>
+<span class="line"><span style="color:#E1E4E8">  };</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> response;</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<h2 id="basic-delivery-models">Basic Delivery Models</h2>
+<h3 id="1-saas-software-as-a-service">1. SaaS (Software as a Service)</h3>
+<p>Software delivered as a service over the internet. SaaS is the most popular software delivery model, allowing access to applications through a browser.</p>
+<p><strong>SaaS Advantages:</strong></p>
+<ul>
+<li>No installation required</li>
+<li>Automatic updates</li>
+<li>Access from any device</li>
+<li>Flexible payments (subscription)</li>
+</ul>
+<p><strong>SaaS Examples:</strong></p>
+<ul>
+<li>Netflix (streaming)</li>
+<li>Dropbox (file storage)</li>
+<li>Salesforce (CRM)</li>
+<li>Slack (communication)</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example of SaaS integration (e.g., Dropbox API)</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> dropbox</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Dropbox</span><span style="color:#E1E4E8">({ accessToken: </span><span style="color:#9ECBFF">"YOUR_ACCESS_TOKEN"</span><span style="color:#E1E4E8"> });</span></span>
+<span class="line"><span style="color:#E1E4E8">dropbox</span></span>
+<span class="line"><span style="color:#E1E4E8">  .</span><span style="color:#B392F0">filesListFolder</span><span style="color:#E1E4E8">({ path: </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8"> })</span></span>
+<span class="line"><span style="color:#E1E4E8">  .</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">response</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(response.entries))</span></span>
+<span class="line"><span style="color:#E1E4E8">  .</span><span style="color:#B392F0">catch</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">error</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(error));</span></span></code></pre>
+<h3 id="2-paas-platform-as-a-service">2. PaaS (Platform as a Service)</h3>
+<p>Platform for hosting and developing applications. PaaS provides an environment for creating, testing, and deploying applications.</p>
+<p><strong>PaaS Advantages:</strong></p>
+<ul>
+<li>Quick deployment</li>
+<li>Built-in developer tools</li>
+<li>Automatic scaling</li>
+<li>Infrastructure management by provider</li>
+</ul>
+<p><strong>PaaS Examples:</strong></p>
+<ul>
+<li>Heroku</li>
+<li>Google App Engine</li>
+<li>AWS Elastic Beanstalk</li>
+<li>Microsoft Azure App Service</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example of application configuration on PaaS (e.g., Heroku)</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> express</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"express"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> app</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> express</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> port</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> process.env.</span><span style="color:#79B8FF">PORT</span><span style="color:#F97583"> ||</span><span style="color:#79B8FF"> 3000</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">listen</span><span style="color:#E1E4E8">(port, () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">`Application running on port ${</span><span style="color:#E1E4E8">port</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span></code></pre>
+<h3 id="3-iaas-infrastructure-as-a-service">3. IaaS (Infrastructure as a Service)</h3>
+<p>Infrastruktura delivered as a service. IaaS provides virtual machines, networks, and data storage.</p>
+<p><strong>IaaS Advantages:</strong></p>
+<ul>
+<li>Full control over infrastructure</li>
+<li>Configuration flexibility</li>
+<li>Payment only for used resources</li>
+<li>Ability to migrate between providers</li>
+</ul>
+<p><strong>IaaS Examples:</strong></p>
+<ul>
+<li>AWS EC2</li>
+<li>Google Compute Engine</li>
+<li>Microsoft Azure VM</li>
+<li>DigitalOcean Droplets</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example of server configuration on IaaS (e.g., AWS EC2)</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> AWS</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"aws-sdk"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> ec2</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#79B8FF"> AWS</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">EC2</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">ec2.</span><span style="color:#B392F0">describeInstances</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">err</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">data</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (err) console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(err);</span></span>
+<span class="line"><span style="color:#F97583">  else</span><span style="color:#E1E4E8"> console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(data);</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span></code></pre>
+<h2 id="specialist-delivery-models">Specialist Delivery Models</h2>
+<h3 id="4-faas-function-as-a-service">4. FaaS (Function as a Service)</h3>
+<p>Functions delivered as a service (serverless). FaaS allows running code without managing servers.</p>
+<p><strong>FaaS Advantages:</strong></p>
+<ul>
+<li>Payment only for performed operations</li>
+<li>Automatic scaling</li>
+<li>No server management</li>
+<li>Faster deployment</li>
+</ul>
+<p><strong>FaaS Examples:</strong></p>
+<ul>
+<li>AWS Lambda</li>
+<li>Google Cloud Functions</li>
+<li>Azure Functions</li>
+<li>IBM Cloud Functions</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example of a serverless function (e.g., AWS Lambda)</span></span>
+<span class="line"><span style="color:#79B8FF">exports</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">handler</span><span style="color:#F97583"> =</span><span style="color:#F97583"> async</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> response</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    statusCode: </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    body: </span><span style="color:#79B8FF">JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">stringify</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">      message: </span><span style="color:#9ECBFF">"Hello from Lambda!"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    }),</span></span>
+<span class="line"><span style="color:#E1E4E8">  };</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> response;</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<h3 id="5-baas-backend-as-a-service">5. BaaS (Backend as a Service)</h3>
+<p>Backend delivered as a service. BaaS provides ready-made backend functions such as authentication, data storage, and notifications.</p>
+<p><strong>BaaS Advantages:</strong></p>
+<ul>
+<li>Faster development</li>
+<li>Less code to write</li>
+<li>Built-in security features</li>
+<li>Automatic scaling</li>
+</ul>
+<p><strong>BaaS Examples:</strong></p>
+<ul>
+<li>Firebase</li>
+<li>Parse</li>
+<li>AWS Amplify</li>
+<li>Supabase</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example of BaaS integration (e.g., Firebase)</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> firebase</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"firebase/app"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"firebase/firestore"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> firebaseConfig</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">  // Firebase configuration</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">firebase.</span><span style="color:#B392F0">initializeApp</span><span style="color:#E1E4E8">(firebaseConfig);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> db</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> firebase.</span><span style="color:#B392F0">firestore</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<h3 id="6-dbaas-database-as-a-service">6. DBaaS (Database as a Service)</h3>
+<p>Database delivered as a service. DBaaS provides managed databases in the cloud.</p>
+<p><strong>DBaaS Advantages:</strong></p>
+<ul>
+<li>Automatic backups</li>
+<li>Management by provider</li>
+<li>Scaling</li>
+<li>High availability</li>
+</ul>
+<p><strong>DBaaS Examples:</strong></p>
+<ul>
+<li>MongoDB Atlas</li>
+<li>Amazon RDS</li>
+<li>Google Cloud Firestore</li>
+<li>Azure Cosmos DB</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example of connection to DBaaS (e.g., MongoDB Atlas)</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#E1E4E8"> { </span><span style="color:#79B8FF">MongoClient</span><span style="color:#E1E4E8"> } </span><span style="color:#F97583">=</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"mongodb"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> uri</span><span style="color:#F97583"> =</span></span>
+<span class="line"><span style="color:#9ECBFF">  "mongodb+srv://&#x3C;username>:&#x3C;password>@cluster.mongodb.net/myFirstDatabase?retryWrites=true&#x26;w=majority"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> client</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> MongoClient</span><span style="color:#E1E4E8">(uri);</span></span></code></pre>
+<h2 id="advanced-delivery-models">Advanced Delivery Models</h2>
+<h3 id="7-aiaas-ai-as-a-service">7. AIaaS (AI as a Service)</h3>
+<p>Artificial Intelligence as a service. AIaaS provides ready-made AI models and machine learning services.</p>
+<p><strong>AIaaS Advantages:</strong></p>
+<ul>
+<li>Access to advanced AI models</li>
+<li>No need to train own models</li>
+<li>Faster deployment of AI functions</li>
+<li>Cost savings</li>
+</ul>
+<p><strong>AIaaS Examples:</strong></p>
+<ul>
+<li>AWS SageMaker</li>
+<li>Google AI Platform</li>
+<li>Azure Cognitive Services</li>
+<li>IBM Watson</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example of using AIaaS (e.g., Azure Cognitive Services)</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">  TextAnalyticsClient</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  AzureKeyCredential</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">=</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"@azure/ai-text-analytics"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> client</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> TextAnalyticsClient</span><span style="color:#E1E4E8">(endpoint, </span><span style="color:#F97583">new</span><span style="color:#B392F0"> AzureKeyCredential</span><span style="color:#E1E4E8">(key));</span></span></code></pre>
+<h3 id="8-secaas-security-as-a-service">8. SECaaS (Security as a Service)</h3>
+<p>Security delivered as a service. SECaaS provides security services in the cloud.</p>
+<p><strong>SECaaS Advantages:</strong></p>
+<ul>
+<li>Advanced security</li>
+<li>Automatic updates</li>
+<li>24/7 monitoring</li>
+<li>Regulatory compliance</li>
+</ul>
+<p><strong>SECaaS Examples:</strong></p>
+<ul>
+<li>AWS WAF</li>
+<li>Cloudflare Security</li>
+<li>Microsoft Azure Security Center</li>
+<li>Google Cloud Security</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example of SECaaS configuration (e.g., AWS WAF)</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> AWS</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"aws-sdk"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> waf</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#79B8FF"> AWS</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">WAF</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> params</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  Name: </span><span style="color:#9ECBFF">"MyWebACL"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  DefaultAction: { Type: </span><span style="color:#9ECBFF">"BLOCK"</span><span style="color:#E1E4E8"> },</span></span>
+<span class="line"><span style="color:#E1E4E8">  Rules: [</span></span>
+<span class="line"><span style="color:#6A737D">    // security rules</span></span>
+<span class="line"><span style="color:#E1E4E8">  ],</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<h2 id="when-to-use-which-model">When to Use Which Model?</h2>
+<ul>
+<li><strong>SaaS</strong>: When you need ready-made software without installation</li>
+<li><strong>PaaS</strong>: When you want to focus on code, not infrastructure</li>
+<li><strong>IaaS</strong>: When you need full control over infrastructure</li>
+<li><strong>FaaS</strong>: When you have irregular load or need scaling</li>
+<li><strong>BaaS</strong>: When you want to quickly create a backend without writing code</li>
+<li><strong>DBaaS</strong>: When you need a managed database</li>
+<li><strong>AIaaS</strong>: When you need advanced AI functions</li>
+<li><strong>SECaaS</strong>: When you need advanced security</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>The choice of the appropriate delivery model depends on many factors:</p>
+<ul>
+<li><strong>Project requirements</strong> - what features are needed</li>
+<li><strong>Budget</strong> - what costs are acceptable</li>
+<li><strong>Team and experience</strong> - what technologies are known</li>
+<li><strong>Scaling needs</strong> - how much traffic is expected</li>
+<li><strong>Security requirements</strong> - what data is being processed</li>
+</ul>
+<p>Often, the best solution is a combination of different models (hybrid approach), which allows for optimal use of the advantages of each. For example, an application can use SaaS for user management, PaaS for hosting, IaaS for data storage, and FaaS for event processing.</p>
+<h2 id="sources">Sources</h2>
+<p>[1] <em>Claude 3.7 Sonnet</em>. (2024). <em>Comprehensive understanding of cloud service delivery models and their applications</em>.</p>  </div> </article> </main> <footer data-astro-cid-sz7xmlte>
+© 2025 Mikołaj Cięszczyk. Content is licensed under CC BY-SA 4.0. <br data-astro-cid-sz7xmlte> Some
+  content was created with assistance from Claude 3.7 Sonnet (Anthropic), which is
+  licensed under MIT.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://m.webtoo.ls/@astro" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow Astro on Mastodon</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/mastodon" data-astro-cid-sz7xmlte><path fill="currentColor" d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://twitter.com/astrodotbuild" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow Astro on Twitter</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/twitter" data-astro-cid-sz7xmlte><path fill="currentColor" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://github.com/withastro/astro" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Go to Astro's GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/github" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> </div> </footer>  <button class="scroll-to-top" id="scroll-to-top" aria-label="Scroll to top" data-astro-cid-bvzihdzo> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-astro-cid-bvzihdzo> <path d="M472.732,243.625l-0.869-1.337l-0.929-1.296L320.925,33.194C305.854,12.379,281.598,0,255.996,0
+          c-25.594,0-49.85,12.379-64.87,33.125L41.066,240.992l-0.929,1.296l-0.869,1.337c-8.17,12.669-12.49,27.323-12.49,42.395
+          c0,16.196,4.924,31.753,14.254,44.993c18.105,25.755,49.441,38.015,80.18,31.463v63.755c0,47.294,38.476,85.769,85.769,85.769
+          h98.039c47.285,0,85.76-38.475,85.76-85.769v-63.755c30.689,6.586,62.059-5.666,80.215-31.497
+          c9.295-13.206,14.228-28.772,14.228-44.959C485.222,270.948,480.902,256.294,472.732,243.625z M421.034,295.86
+          c-4.013,5.708-11.084,8.401-17.866,6.808l-73.459-17.159v140.722c0,13.64-11.05,24.698-24.69,24.698H206.98
+          c-13.64,0-24.698-11.059-24.698-24.698V285.509l-73.442,17.159c-6.799,1.584-13.861-1.099-17.874-6.808
+          c-2.079-2.948-3.118-6.39-3.118-9.84c0-3.221,0.912-6.45,2.735-9.278L240.592,68.942c3.578-4.942,9.304-7.872,15.404-7.872
+          s11.834,2.93,15.412,7.872l150.009,207.799c1.823,2.828,2.734,6.057,2.734,9.278C424.152,289.47,423.104,292.912,421.034,295.86z" data-astro-cid-bvzihdzo></path> </svg> </button> <script type="module">const o=document.getElementById("scroll-to-top");o&&(window.addEventListener("scroll",()=>{window.pageYOffset>300?o.style.display="flex":o.style.display="none"}),o.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"})}));</script> </body> </html>
