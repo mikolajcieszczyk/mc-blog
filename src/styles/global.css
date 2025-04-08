@@ -1,24 +1,23 @@
-/*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
-
 :root {
+	/* Colors */
 	--accent: #2337ff;
 	--accent-dark: #000d8a;
 	--black: 15, 18, 25;
 	--gray: 96, 115, 159;
 	--gray-light: 229, 233, 240;
 	--gray-dark: 34, 41, 57;
+
+	/* Gradients & Effects */
 	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
+	--box-shadow: 0 2px 6px rgba(var(--gray), 25%),
+		0 8px 24px rgba(var(--gray), 33%),
 		0 16px 32px rgba(var(--gray), 33%);
 }
 
+/* Typography */
 @font-face {
 	font-family: 'Atkinson';
-	src: url('/fonts/atkinson-regular.woff') format('woff');
+	src: url('/mc-blog//fonts/atkinson-regular.woff') format('woff');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -26,14 +25,18 @@
 
 @font-face {
 	font-family: 'Atkinson';
-	src: url('/fonts/atkinson-bold.woff') format('woff');
+	src: url('/mc-blog//fonts/atkinson-bold.woff') format('woff');
 	font-weight: 700;
 	font-style: normal;
 	font-display: swap;
 }
 
+/* Base Styles */
 body {
 	font-family: 'Atkinson', sans-serif;
+	font-size: 20px;
+	line-height: 1.7;
+	color: rgb(var(--gray-dark));
 	margin: 0;
 	padding: 0;
 	text-align: left;
@@ -41,9 +44,6 @@ body {
 	background-size: 100% 600px;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	font-size: 20px;
-	line-height: 1.7;
 }
 
 main {
@@ -53,13 +53,14 @@ main {
 	padding: 3em 1em;
 }
 
+/* Typography Scales */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-	margin: 0 0 0.5rem 0;
+	margin: 1rem 0;
 	color: rgb(var(--black));
 	line-height: 1.2;
 }
@@ -84,6 +85,7 @@ h5 {
 	font-size: 1.25em;
 }
 
+/* Text Elements */
 strong,
 b {
 	font-weight: 700;
@@ -91,20 +93,13 @@ b {
 
 a {
 	color: var(--accent);
+
+	&:hover {
+		color: var(--accent);
+	}
 }
 
-a:hover {
-	color: var(--accent);
-}
-
-p {
-	margin-bottom: 1em;
-}
-
-.prose p {
-	margin-bottom: 2em;
-}
-
+/* Form Elements */
 textarea {
 	width: 100%;
 	font-size: 16px;
@@ -114,6 +109,7 @@ input {
 	font-size: 16px;
 }
 
+/* Content Elements */
 table {
 	width: 100%;
 }
@@ -124,6 +120,7 @@ img {
 	border-radius: 8px;
 }
 
+/* Code Blocks */
 code {
 	padding: 2px 5px;
 	background-color: rgb(var(--gray-light));
@@ -136,14 +133,15 @@ pre {
 	white-space: pre-wrap !important;
 	word-wrap: break-word !important;
 	max-width: 100%;
+
+	&>code {
+		all: unset;
+		white-space: pre-wrap !important;
+		word-wrap: break-word !important;
+	}
 }
 
-pre>code {
-	all: unset;
-	white-space: pre-wrap !important;
-	word-wrap: break-word !important;
-}
-
+/* Block Elements */
 blockquote {
 	border-left: 4px solid var(--accent);
 	padding: 0 0 0 20px;
@@ -156,16 +154,33 @@ hr {
 	border-top: 1px solid rgb(var(--gray-light));
 }
 
-@media (max-width: 720px) {
-	body {
-		font-size: 18px;
-	}
-
-	main {
-		padding: 1em;
-	}
+/* Lists and Paragraphs */
+ol,
+ul,
+p {
+	margin: 8px;
 }
 
+ol {
+	padding-left: 3rem !important;
+}
+
+ul {
+	padding-left: 4rem !important;
+}
+
+/* Custom Components */
+.tldr {
+	border: 2px solid #e0e0e0;
+	border-radius: 8px;
+	padding: 10px 20px;
+	margin: 20px 0;
+	background-color: #f8f9fa;
+	box-shadow: var(--box-shadow);
+	margin-bottom: 60px;
+}
+
+/* Utility Classes */
 .sr-only {
 	border: 0;
 	padding: 0;
@@ -174,12 +189,19 @@ hr {
 	height: 1px;
 	width: 1px;
 	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
 	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
 	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
 	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+	body {
+		font-size: 18px;
+	}
+
+	main {
+		padding: 1em;
+	}
 }
