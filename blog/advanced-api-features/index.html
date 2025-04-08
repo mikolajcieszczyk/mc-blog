@@ -1,0 +1,527 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.1.7"><!-- Font preloads --><link rel="preload" href="/mc-blog//fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/mc-blog//fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://mikolajcieszczyk.github.io/mc-blog/blog/advanced-api-features/"><!-- Primary Meta Tags --><title>Advanced API Features - Versioning, Documentation, Rate Limiting and Caching</title><meta name="title" content="Advanced API Features - Versioning, Documentation, Rate Limiting and Caching"><meta name="description" content="A comprehensive guide to implementing advanced API features including versioning, documentation, rate limiting, caching, and monitoring"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://mikolajcieszczyk.github.io/mc-blog/blog/advanced-api-features/"><meta property="og:title" content="Advanced API Features - Versioning, Documentation, Rate Limiting and Caching"><meta property="og:description" content="A comprehensive guide to implementing advanced API features including versioning, documentation, rate limiting, caching, and monitoring"><meta property="og:image" content="https://mikolajcieszczyk.github.io/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://mikolajcieszczyk.github.io/mc-blog/blog/advanced-api-features/"><meta property="twitter:title" content="Advanced API Features - Versioning, Documentation, Rate Limiting and Caching"><meta property="twitter:description" content="A comprehensive guide to implementing advanced API features including versioning, documentation, rate limiting, caching, and monitoring"><meta property="twitter:image" content="https://mikolajcieszczyk.github.io/blog-placeholder-1.jpg"><style>:root{--accent: #2337ff;--accent-dark: #000d8a;--black: 15, 18, 25;--gray: 96, 115, 159;--gray-light: 229, 233, 240;--gray-dark: 34, 41, 57;--gray-gradient: rgba(var(--gray-light), 50%), #fff;--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%)}@font-face{font-family:Atkinson;src:url(/mc-blog//fonts/atkinson-regular.woff) format("woff");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:Atkinson;src:url(/mc-blog//fonts/atkinson-bold.woff) format("woff");font-weight:700;font-style:normal;font-display:swap}body{font-family:Atkinson,sans-serif;font-size:20px;line-height:1.7;color:rgb(var(--gray-dark));margin:0;padding:0;text-align:left;background:linear-gradient(var(--gray-gradient)) no-repeat;background-size:100% 600px;word-wrap:break-word;overflow-wrap:break-word}main{width:720px;max-width:calc(100% - 2em);margin:auto;padding:3em 1em}h1,h2,h3,h4,h5,h6{margin:1rem 0;color:rgb(var(--black));line-height:1.2}h1{font-size:3.052em}h2{font-size:2.441em}h3{font-size:1.953em}h4{font-size:1.563em}h5{font-size:1.25em}strong,b{font-weight:700}a{color:var(--accent);&:hover{color:var(--accent)}}textarea{width:100%;font-size:16px}input{font-size:16px}table{width:100%}img{max-width:100%;height:auto;border-radius:8px}code{padding:2px 5px;background-color:rgb(var(--gray-light));border-radius:2px}pre{padding:1.5em;border-radius:8px;white-space:pre-wrap!important;word-wrap:break-word!important;max-width:100%;>code{all:unset;white-space:pre-wrap!important;word-wrap:break-word!important}}blockquote{border-left:4px solid var(--accent);padding:0 0 0 20px;margin:0;font-size:1.333em}hr{border:none;border-top:1px solid rgb(var(--gray-light))}ol,ul,p{margin:8px}ol{padding-left:3rem!important}ul{padding-left:4rem!important}.tldr{border:2px solid #e0e0e0;border-radius:8px;padding:10px 20px;margin:20px 0 60px;background-color:#f8f9fa;box-shadow:var(--box-shadow)}.sr-only{border:0;padding:0;margin:0;position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);clip-path:inset(50%);white-space:nowrap}@media (max-width: 720px){body{font-size:18px}main{padding:1em}}footer[data-astro-cid-sz7xmlte]{padding:1em;background:linear-gradient(var(--gray-gradient)) no-repeat;color:rgb(var(--gray));text-align:center}.social-links[data-astro-cid-sz7xmlte]{display:flex;justify-content:center;gap:1em;margin-top:1em}.social-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]{text-decoration:none;color:rgb(var(--gray))}.social-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:hover{color:rgb(var(--gray-dark))}a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}header[data-astro-cid-3ef6ksr2]{margin:0;padding:0 1em;background:#fff;box-shadow:0 2px 8px rgba(var(--black),5%)}h2[data-astro-cid-3ef6ksr2]{margin:0;font-size:1em}h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2],h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none}nav[data-astro-cid-3ef6ksr2]{display:flex;align-items:center;justify-content:space-between}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{padding:1em .5em;color:var(--black);border-bottom:4px solid transparent;text-decoration:none}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none;border-bottom-color:var(--accent)}.social-links[data-astro-cid-3ef6ksr2],.social-links[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{display:flex}@media (max-width: 720px){.social-links[data-astro-cid-3ef6ksr2]{display:none}}
+main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:820px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:rgb(var(--gray-dark))}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:rgb(var(--gray))}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}.scroll-to-top[data-astro-cid-bvzihdzo]{position:fixed;bottom:30px;right:30px;background-color:#000;color:#fff;border:none;border-radius:50%;width:60px;height:60px;cursor:pointer;display:none;opacity:.8;transition:opacity .3s;box-shadow:0 2px 10px #0003;padding:0;display:flex;align-items:center;justify-content:center}.scroll-to-top[data-astro-cid-bvzihdzo]:hover{opacity:1}.scroll-to-top[data-astro-cid-bvzihdzo] svg[data-astro-cid-bvzihdzo]{width:30px;height:30px;fill:#fff}
+</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/mc-blog/" data-astro-cid-3ef6ksr2>MC Blog</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/mc-blog/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Home </a>  <a href="/mc-blog/blog" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Blog </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://github.com/mikolajcieszczyk" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Go to my GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo> <img width="1020" height="510" src="/mc-blog/advanced-api-features.svg" alt="" data-astro-cid-bvzihdzo> </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <time datetime="2025-04-03T00:00:00.000Z"> Apr 3, 2025 </time>  </div> <h1 data-astro-cid-bvzihdzo>Advanced API Features - Versioning, Documentation, Rate Limiting and Caching</h1> <hr data-astro-cid-bvzihdzo> </div>  <h1 id="advanced-api-features">Advanced API Features</h1>
+<p>Building a robust and scalable API requires more than just basic endpoints. In this article, we’ll explore advanced features that make your API more maintainable, performant, and developer-friendly. These features are essential for APIs that need to scale, remain stable over time, and provide a great developer experience.</p>
+<h2 id="1-api-versioning">1. API Versioning</h2>
+<p>API versioning is crucial for maintaining backward compatibility while allowing your API to evolve. Without proper versioning, changes to your API can break existing clients, leading to frustrated users and increased support burden.</p>
+<h3 id="url-versioning">URL Versioning</h3>
+<p>URL versioning is the most common and straightforward approach. It involves including the version number directly in the URL path.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example of URL versioning</span></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">use</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/v1"</span><span style="color:#E1E4E8">, v1Router);</span></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">use</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/v2"</span><span style="color:#E1E4E8">, v2Router);</span></span></code></pre>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Simple to implement and understand</li>
+<li>Clear and visible in the URL</li>
+<li>Easy to cache different versions</li>
+<li>Works well with API gateways</li>
+</ul>
+<p><strong>Disadvantages:</strong></p>
+<ul>
+<li>URLs become longer</li>
+<li>Not RESTful (URLs should identify resources, not versions)</li>
+<li>Can lead to URL pollution if many versions exist</li>
+</ul>
+<h3 id="header-versioning">Header Versioning</h3>
+<p>Header versioning uses HTTP headers to specify the API version, keeping the URL clean.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> versionMiddleware</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">next</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> version</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> req.headers[</span><span style="color:#9ECBFF">"api-version"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">||</span><span style="color:#9ECBFF"> "1.0"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">  req.apiVersion </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> version;</span></span>
+<span class="line"><span style="color:#B392F0">  next</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Clean URLs that focus on resources</li>
+<li>More flexible than URL versioning</li>
+<li>Can support multiple version headers (e.g., Accept-Version, X-API-Version)</li>
+</ul>
+<p><strong>Disadvantages:</strong></p>
+<ul>
+<li>Less discoverable than URL versioning</li>
+<li>Requires client awareness of header usage</li>
+<li>Can be overlooked in documentation or testing</li>
+</ul>
+<h3 id="content-negotiation">Content Negotiation</h3>
+<p>Content negotiation allows clients to request different formats or versions of the same resource.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/users"</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> format</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> req.</span><span style="color:#B392F0">accepts</span><span style="color:#E1E4E8">([</span><span style="color:#9ECBFF">"json"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"xml"</span><span style="color:#E1E4E8">]);</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (format </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> "xml"</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> res.</span><span style="color:#B392F0">type</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"xml"</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">send</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">convertToXML</span><span style="color:#E1E4E8">(users));</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">(users);</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span></code></pre>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Follows HTTP standards</li>
+<li>Flexible for different content types</li>
+<li>Can be combined with versioning</li>
+</ul>
+<p><strong>Disadvantages:</strong></p>
+<ul>
+<li>More complex to implement</li>
+<li>Requires careful handling of all supported formats</li>
+<li>May increase server load if many formats are supported</li>
+</ul>
+<h3 id="version-deprecation-strategy">Version Deprecation Strategy</h3>
+<p>A good versioning strategy includes a plan for deprecating old versions.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> deprecationMiddleware</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">next</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (req.apiVersion </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> "1.0"</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    res.</span><span style="color:#B392F0">set</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Warning"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'299 - "This API version is deprecated"'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#B392F0">  next</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<p><strong>Key aspects of deprecation:</strong></p>
+<ul>
+<li>Provide advance notice (typically 6-12 months)</li>
+<li>Include deprecation headers in responses</li>
+<li>Document migration paths</li>
+<li>Maintain old versions for a reasonable period</li>
+<li>Consider offering migration tools or services</li>
+</ul>
+<h2 id="2-documentation">2. Documentation</h2>
+<p>Comprehensive API documentation is essential for developer adoption and success. Good documentation reduces support burden, accelerates integration, and improves the overall developer experience.</p>
+<h3 id="swaggeropenapi-setup">Swagger/OpenAPI Setup</h3>
+<p>OpenAPI (formerly Swagger) is the industry standard for API documentation. It provides a machine-readable format that can be used to generate interactive documentation.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> swaggerJsdoc</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"swagger-jsdoc"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> swaggerUi</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"swagger-ui-express"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> swaggerOptions</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  definition: {</span></span>
+<span class="line"><span style="color:#E1E4E8">    openapi: </span><span style="color:#9ECBFF">"3.0.0"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    info: {</span></span>
+<span class="line"><span style="color:#E1E4E8">      title: </span><span style="color:#9ECBFF">"API Documentation"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">      version: </span><span style="color:#9ECBFF">"1.0.0"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">      description: </span><span style="color:#9ECBFF">"API documentation with examples"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#E1E4E8">  apis: [</span><span style="color:#9ECBFF">"./routes/*.js"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> swaggerDocs</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> swaggerJsdoc</span><span style="color:#E1E4E8">(swaggerOptions);</span></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">use</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api-docs"</span><span style="color:#E1E4E8">, swaggerUi.serve, swaggerUi.</span><span style="color:#B392F0">setup</span><span style="color:#E1E4E8">(swaggerDocs));</span></span></code></pre>
+<p><strong>Benefits of OpenAPI:</strong></p>
+<ul>
+<li>Interactive documentation with try-it-out functionality</li>
+<li>Code generation for multiple languages</li>
+<li>Automated testing and validation</li>
+<li>API design validation before implementation</li>
+<li>Integration with API management platforms</li>
+</ul>
+<h3 id="endpoint-documentation-example">Endpoint Documentation Example</h3>
+<p>JSDoc comments can be used to generate OpenAPI documentation directly from your code.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">/**</span></span>
+<span class="line"><span style="color:#6A737D"> * </span><span style="color:#F97583">@swagger</span></span>
+<span class="line"><span style="color:#6A737D"> * /api/users:</span></span>
+<span class="line"><span style="color:#6A737D"> *   get:</span></span>
+<span class="line"><span style="color:#6A737D"> *     summary: Retrieve a list of users</span></span>
+<span class="line"><span style="color:#6A737D"> *     description: Returns a paginated list of users with optional filtering</span></span>
+<span class="line"><span style="color:#6A737D"> *     parameters:</span></span>
+<span class="line"><span style="color:#6A737D"> *       - in: query</span></span>
+<span class="line"><span style="color:#6A737D"> *         name: page</span></span>
+<span class="line"><span style="color:#6A737D"> *         schema:</span></span>
+<span class="line"><span style="color:#6A737D"> *           type: integer</span></span>
+<span class="line"><span style="color:#6A737D"> *           default: 1</span></span>
+<span class="line"><span style="color:#6A737D"> *         description: Page number for pagination</span></span>
+<span class="line"><span style="color:#6A737D"> *       - in: query</span></span>
+<span class="line"><span style="color:#6A737D"> *         name: limit</span></span>
+<span class="line"><span style="color:#6A737D"> *         schema:</span></span>
+<span class="line"><span style="color:#6A737D"> *           type: integer</span></span>
+<span class="line"><span style="color:#6A737D"> *           default: 10</span></span>
+<span class="line"><span style="color:#6A737D"> *         description: Number of items per page</span></span>
+<span class="line"><span style="color:#6A737D"> *     responses:</span></span>
+<span class="line"><span style="color:#6A737D"> *       200:</span></span>
+<span class="line"><span style="color:#6A737D"> *         description: List of users</span></span>
+<span class="line"><span style="color:#6A737D"> *         content:</span></span>
+<span class="line"><span style="color:#6A737D"> *           application/json:</span></span>
+<span class="line"><span style="color:#6A737D"> *             schema:</span></span>
+<span class="line"><span style="color:#6A737D"> *               type: object</span></span>
+<span class="line"><span style="color:#6A737D"> *               properties:</span></span>
+<span class="line"><span style="color:#6A737D"> *                 data:</span></span>
+<span class="line"><span style="color:#6A737D"> *                   type: array</span></span>
+<span class="line"><span style="color:#6A737D"> *                   items:</span></span>
+<span class="line"><span style="color:#6A737D"> *                     $ref: '#/components/schemas/User'</span></span>
+<span class="line"><span style="color:#6A737D"> *                 pagination:</span></span>
+<span class="line"><span style="color:#6A737D"> *                   $ref: '#/components/schemas/Pagination'</span></span>
+<span class="line"><span style="color:#6A737D"> *       400:</span></span>
+<span class="line"><span style="color:#6A737D"> *         description: Invalid parameters</span></span>
+<span class="line"><span style="color:#6A737D"> *       500:</span></span>
+<span class="line"><span style="color:#6A737D"> *         description: Server error</span></span>
+<span class="line"><span style="color:#6A737D"> */</span></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/users"</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">  // Implementation</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span></code></pre>
+<p><strong>Documentation best practices:</strong></p>
+<ul>
+<li>Include request and response examples</li>
+<li>Document all possible error responses</li>
+<li>Provide authentication details</li>
+<li>Include rate limiting information</li>
+<li>Add code samples in multiple languages</li>
+<li>Keep documentation in sync with code changes</li>
+</ul>
+<h2 id="3-rate-limiting">3. Rate Limiting</h2>
+<p>Rate limiting is essential for protecting your API from abuse, ensuring fair usage, and maintaining service quality for all users.</p>
+<h3 id="basic-rate-limiting">Basic Rate Limiting</h3>
+<p>Basic rate limiting restricts the number of requests a client can make within a specific time window.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> rateLimit</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"express-rate-limit"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> limiter</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> rateLimit</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">  windowMs: </span><span style="color:#79B8FF">15</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> 60</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> 1000</span><span style="color:#E1E4E8">, </span><span style="color:#6A737D">// 15 minutes</span></span>
+<span class="line"><span style="color:#E1E4E8">  max: </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">, </span><span style="color:#6A737D">// limit each IP to 100 requests per windowMs</span></span>
+<span class="line"><span style="color:#E1E4E8">  message: </span><span style="color:#9ECBFF">"Too many requests from this IP, please try again later"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">use</span><span style="color:#E1E4E8">(limiter);</span></span></code></pre>
+<p><strong>Key aspects of rate limiting:</strong></p>
+<ul>
+<li>Choose appropriate time windows (seconds, minutes, hours)</li>
+<li>Set reasonable limits based on expected usage</li>
+<li>Consider different limits for different endpoints</li>
+<li>Provide clear error messages</li>
+<li>Include rate limit information in response headers</li>
+</ul>
+<h3 id="multiple-tiers">Multiple Tiers</h3>
+<p>For APIs with different user types, implementing tiered rate limits is a common approach.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> tierLimiter</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  free: </span><span style="color:#B392F0">rateLimit</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">    windowMs: </span><span style="color:#79B8FF">60</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> 60</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> 1000</span><span style="color:#E1E4E8">, </span><span style="color:#6A737D">// 1 hour</span></span>
+<span class="line"><span style="color:#E1E4E8">    max: </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  }),</span></span>
+<span class="line"><span style="color:#E1E4E8">  premium: </span><span style="color:#B392F0">rateLimit</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">    windowMs: </span><span style="color:#79B8FF">60</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> 60</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> 1000</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    max: </span><span style="color:#79B8FF">1000</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  }),</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">use</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/free"</span><span style="color:#E1E4E8">, tierLimiter.free);</span></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">use</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/premium"</span><span style="color:#E1E4E8">, tierLimiter.premium);</span></span></code></pre>
+<p><strong>Tiered rate limiting considerations:</strong></p>
+<ul>
+<li>Define clear tiers with appropriate limits</li>
+<li>Document tier differences</li>
+<li>Consider burst allowances</li>
+<li>Implement upgrade paths</li>
+<li>Monitor usage patterns to adjust limits</li>
+</ul>
+<p><strong>Rate limit headers:</strong></p>
+<ul>
+<li><code>X-RateLimit-Limit</code>: Maximum requests per window</li>
+<li><code>X-RateLimit-Remaining</code>: Remaining requests in current window</li>
+<li><code>X-RateLimit-Reset</code>: Time when the rate limit resets</li>
+<li><code>Retry-After</code>: Time to wait before retrying (when limit exceeded)</li>
+</ul>
+<h2 id="4-caching">4. Caching</h2>
+<p>Caching improves API performance, reduces server load, and enhances user experience by delivering frequently requested data faster.</p>
+<h3 id="basic-in-memory-caching">Basic In-Memory Caching</h3>
+<p>The simplest approach to caching is storing results in the application’s memory.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Simple in-memory caching mechanism</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> cache</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Map</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> CACHE_TTL</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 60</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> 60</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> 1000</span><span style="color:#E1E4E8">; </span><span style="color:#6A737D">// 1 hour in milliseconds</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> cacheMiddleware</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">next</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> key</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> req.originalUrl;</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> cachedItem</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> cache.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(key);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">  // Check if data is in cache and hasn't expired</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (cachedItem </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> Date.</span><span style="color:#B392F0">now</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> cachedItem.timestamp </span><span style="color:#F97583">&#x3C;</span><span style="color:#79B8FF"> CACHE_TTL</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Cache hit for:"</span><span style="color:#E1E4E8">, key);</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> res.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">(cachedItem.data);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">  // Store the original res.json function</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> originalJson</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> res.json;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">  // Override res.json to save the response in cache</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">json</span><span style="color:#F97583"> =</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">data</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    cache.</span><span style="color:#B392F0">set</span><span style="color:#E1E4E8">(key, {</span></span>
+<span class="line"><span style="color:#E1E4E8">      data: data,</span></span>
+<span class="line"><span style="color:#E1E4E8">      timestamp: Date.</span><span style="color:#B392F0">now</span><span style="color:#E1E4E8">(),</span></span>
+<span class="line"><span style="color:#E1E4E8">    });</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> originalJson.</span><span style="color:#B392F0">call</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">, data);</span></span>
+<span class="line"><span style="color:#E1E4E8">  };</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">  next</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Use middleware for selected endpoints</span></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">use</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/products"</span><span style="color:#E1E4E8">, cacheMiddleware);</span></span></code></pre>
+<h3 id="cache-cleaning">Cache Cleaning</h3>
+<p>It’s important to regularly clean the cache to prevent memory leaks.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Cache cleaning function</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> cleanCache</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> now</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> Date.</span><span style="color:#B392F0">now</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">  for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">key</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">value</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">of</span><span style="color:#E1E4E8"> cache.</span><span style="color:#B392F0">entries</span><span style="color:#E1E4E8">()) {</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (now </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> value.timestamp </span><span style="color:#F97583">></span><span style="color:#79B8FF"> CACHE_TTL</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">      cache.</span><span style="color:#B392F0">delete</span><span style="color:#E1E4E8">(key);</span></span>
+<span class="line"><span style="color:#E1E4E8">      console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Removed from cache:"</span><span style="color:#E1E4E8">, key);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Run cleaning every hour</span></span>
+<span class="line"><span style="color:#B392F0">setInterval</span><span style="color:#E1E4E8">(cleanCache, </span><span style="color:#79B8FF">CACHE_TTL</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="cache-invalidation">Cache Invalidation</h3>
+<p>Sometimes we need to manually invalidate the cache, for example after data updates.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Function to invalidate cache</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> invalidateCache</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">pattern</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">const</span><span style="color:#79B8FF"> key</span><span style="color:#F97583"> of</span><span style="color:#E1E4E8"> cache.</span><span style="color:#B392F0">keys</span><span style="color:#E1E4E8">()) {</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (key.</span><span style="color:#B392F0">includes</span><span style="color:#E1E4E8">(pattern)) {</span></span>
+<span class="line"><span style="color:#E1E4E8">      cache.</span><span style="color:#B392F0">delete</span><span style="color:#E1E4E8">(key);</span></span>
+<span class="line"><span style="color:#E1E4E8">      console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Invalidated cache for:"</span><span style="color:#E1E4E8">, key);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Example usage when updating a product</span></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">put</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/products/:id"</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">  // Update product in database</span></span>
+<span class="line"><span style="color:#B392F0">  updateProduct</span><span style="color:#E1E4E8">(req.params.id, req.body)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">      // Invalidate cache for this product and product list</span></span>
+<span class="line"><span style="color:#B392F0">      invalidateCache</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">`/api/products/${</span><span style="color:#E1E4E8">req</span><span style="color:#9ECBFF">.</span><span style="color:#E1E4E8">params</span><span style="color:#9ECBFF">.</span><span style="color:#E1E4E8">id</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">      invalidateCache</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/products"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">      res.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">({ success: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8"> });</span></span>
+<span class="line"><span style="color:#E1E4E8">    })</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">catch</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">err</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> res.</span><span style="color:#B392F0">status</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">500</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">({ error: err.message }));</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span></code></pre>
+<h3 id="different-caching-strategies">Different Caching Strategies</h3>
+<p>We can implement different caching strategies depending on the data type.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Caching strategies</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> cacheStrategies</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">  // Cache only GET requests</span></span>
+<span class="line"><span style="color:#B392F0">  getOnly</span><span style="color:#E1E4E8">: (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">next</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (req.method </span><span style="color:#F97583">!==</span><span style="color:#9ECBFF"> "GET"</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">      return</span><span style="color:#B392F0"> next</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#B392F0"> cacheMiddleware</span><span style="color:#E1E4E8">(req, res, next);</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">  // Cache with different TTLs for different endpoints</span></span>
+<span class="line"><span style="color:#B392F0">  customTTL</span><span style="color:#E1E4E8">: (</span><span style="color:#FFAB70">ttl</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">next</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> key</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> req.originalUrl;</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> cachedItem</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> cache.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(key);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (cachedItem </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> Date.</span><span style="color:#B392F0">now</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> cachedItem.timestamp </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> ttl) {</span></span>
+<span class="line"><span style="color:#F97583">      return</span><span style="color:#E1E4E8"> res.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">(cachedItem.data);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> originalJson</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> res.json;</span></span>
+<span class="line"><span style="color:#E1E4E8">    res.</span><span style="color:#B392F0">json</span><span style="color:#F97583"> =</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">data</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">      cache.</span><span style="color:#B392F0">set</span><span style="color:#E1E4E8">(key, {</span></span>
+<span class="line"><span style="color:#E1E4E8">        data: data,</span></span>
+<span class="line"><span style="color:#E1E4E8">        timestamp: Date.</span><span style="color:#B392F0">now</span><span style="color:#E1E4E8">(),</span></span>
+<span class="line"><span style="color:#E1E4E8">      });</span></span>
+<span class="line"><span style="color:#F97583">      return</span><span style="color:#E1E4E8"> originalJson.</span><span style="color:#B392F0">call</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">, data);</span></span>
+<span class="line"><span style="color:#E1E4E8">    };</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    next</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Use different strategies for different endpoints</span></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">use</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/products"</span><span style="color:#E1E4E8">, cacheStrategies.getOnly);</span></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">use</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/users"</span><span style="color:#E1E4E8">, cacheStrategies.</span><span style="color:#B392F0">customTTL</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">30</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> 60</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> 1000</span><span style="color:#E1E4E8">)); </span><span style="color:#6A737D">// 30 minutes</span></span></code></pre>
+<h3 id="cache-control-headers">Cache-Control Headers</h3>
+<p>Even with server-side caching, it’s worth using HTTP headers to control client-side caching.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Setting cache headers for different response types</span></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/static-data"</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">  // Data that rarely changes - cache for 1 day</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">set</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Cache-Control"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"public, max-age=86400"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#6A737D">    /* data */</span></span>
+<span class="line"><span style="color:#E1E4E8">  });</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/dynamic-data"</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">  // Data that changes frequently - cache for 5 minutes</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">set</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Cache-Control"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"public, max-age=300"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#6A737D">    /* data */</span></span>
+<span class="line"><span style="color:#E1E4E8">  });</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/private-data"</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">  // Private data - only client-side cache</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">set</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Cache-Control"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"private, max-age=3600"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#6A737D">    /* data */</span></span>
+<span class="line"><span style="color:#E1E4E8">  });</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span></code></pre>
+<h3 id="when-to-use-caching">When to Use Caching</h3>
+<p>Caching is particularly useful for:</p>
+<ul>
+<li>Frequently requested, rarely changing data</li>
+<li>Computationally expensive operations</li>
+<li>Data that can be stale for short periods</li>
+<li>High-traffic endpoints</li>
+<li>Reducing database load</li>
+</ul>
+<h3 id="caching-best-practices">Caching Best Practices</h3>
+<ul>
+<li>Choose appropriate caching strategies for different data types</li>
+<li>Implement cache invalidation mechanism</li>
+<li>Monitor cache performance (hit rate)</li>
+<li>Set appropriate TTLs</li>
+<li>Consider cache warming for critical data</li>
+<li>Use cache-control headers effectively</li>
+<li>Consider distributed caching for scalability</li>
+</ul>
+<h2 id="5-monitoring">5. Monitoring</h2>
+<p>Effective monitoring is crucial for maintaining API reliability, performance, and security. It helps identify issues before they impact users and provides insights for optimization.</p>
+<h3 id="performance-tracking">Performance Tracking</h3>
+<p>Performance tracking helps identify bottlenecks and optimize API response times.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> prometheus</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"prom-client"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> responseTime</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"response-time"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> httpRequestDuration</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> prometheus.</span><span style="color:#B392F0">Histogram</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">  name: </span><span style="color:#9ECBFF">"http_request_duration_seconds"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  help: </span><span style="color:#9ECBFF">"Duration of HTTP requests in seconds"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  labelNames: [</span><span style="color:#9ECBFF">"method"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"route"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"status_code"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">use</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#B392F0">  responseTime</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">time</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    httpRequestDuration</span></span>
+<span class="line"><span style="color:#E1E4E8">      .</span><span style="color:#B392F0">labels</span><span style="color:#E1E4E8">(req.method, req.route?.path </span><span style="color:#F97583">||</span><span style="color:#E1E4E8"> req.path, res.statusCode)</span></span>
+<span class="line"><span style="color:#E1E4E8">      .</span><span style="color:#B392F0">observe</span><span style="color:#E1E4E8">(time </span><span style="color:#F97583">/</span><span style="color:#79B8FF"> 1000</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  })</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span></code></pre>
+<p><strong>Key metrics to track:</strong></p>
+<ul>
+<li>Response time (p50, p95, p99)</li>
+<li>Request volume</li>
+<li>Error rates</li>
+<li>Resource utilization (CPU, memory, database)</li>
+<li>Cache hit rates</li>
+<li>Rate limit hits</li>
+</ul>
+<p><strong>Monitoring tools:</strong></p>
+<ul>
+<li>Prometheus + Grafana</li>
+<li>Datadog</li>
+<li>New Relic</li>
+<li>AWS CloudWatch</li>
+<li>ELK Stack (Elasticsearch, Logstash, Kibana)</li>
+</ul>
+<h3 id="health-check-endpoint">Health Check Endpoint</h3>
+<p>Health check endpoints allow automated systems to verify API availability.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/health"</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> health</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    uptime: process.</span><span style="color:#B392F0">uptime</span><span style="color:#E1E4E8">(),</span></span>
+<span class="line"><span style="color:#E1E4E8">    message: </span><span style="color:#9ECBFF">"OK"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    timestamp: Date.</span><span style="color:#B392F0">now</span><span style="color:#E1E4E8">(),</span></span>
+<span class="line"><span style="color:#E1E4E8">  };</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    res.</span><span style="color:#B392F0">send</span><span style="color:#E1E4E8">(health);</span></span>
+<span class="line"><span style="color:#E1E4E8">  } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    health.message </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> error;</span></span>
+<span class="line"><span style="color:#E1E4E8">    res.</span><span style="color:#B392F0">status</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">503</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">send</span><span style="color:#E1E4E8">(health);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span></code></pre>
+<p><strong>Advanced health checks:</strong></p>
+<ul>
+<li>Database connectivity</li>
+<li>External service dependencies</li>
+<li>Cache availability</li>
+<li>Disk space</li>
+<li>Memory usage</li>
+<li>Custom business logic checks</li>
+</ul>
+<p><strong>Alerting system considerations:</strong></p>
+<ul>
+<li>Set appropriate thresholds</li>
+<li>Define escalation paths</li>
+<li>Avoid alert fatigue</li>
+<li>Include context in alerts</li>
+<li>Automate incident response where possible</li>
+</ul>
+<h2 id="best-practices">Best Practices</h2>
+<ol>
+<li>
+<p><strong>Versioning</strong></p>
+<ul>
+<li>Plan for version changes from the start</li>
+<li>Maintain backward compatibility</li>
+<li>Document breaking changes</li>
+<li>Provide migration guides</li>
+<li>Use semantic versioning principles</li>
+<li>Consider API versioning as part of your product lifecycle</li>
+</ul>
+</li>
+<li>
+<p><strong>Documentation</strong></p>
+<ul>
+<li>Keep documentation up-to-date</li>
+<li>Include request/response examples</li>
+<li>Document error scenarios</li>
+<li>Provide SDK examples</li>
+<li>Use consistent formatting and style</li>
+<li>Include authentication details</li>
+<li>Document rate limits and quotas</li>
+<li>Provide integration guides</li>
+</ul>
+</li>
+<li>
+<p><strong>Rate Limiting</strong></p>
+<ul>
+<li>Set appropriate limits</li>
+<li>Provide clear error messages</li>
+<li>Include rate limit headers</li>
+<li>Implement retry mechanisms</li>
+<li>Consider different limits for different endpoints</li>
+<li>Document rate limit policies</li>
+<li>Provide tools to check current usage</li>
+<li>Implement graceful degradation</li>
+</ul>
+</li>
+<li>
+<p><strong>Caching</strong></p>
+<ul>
+<li>Use appropriate cache strategies</li>
+<li>Implement cache invalidation</li>
+<li>Monitor cache hit rates</li>
+<li>Set appropriate TTLs</li>
+<li>Consider cache warming for critical data</li>
+<li>Implement cache versioning</li>
+<li>Use cache headers effectively</li>
+<li>Consider distributed caching for scalability</li>
+</ul>
+</li>
+<li>
+<p><strong>Monitoring</strong></p>
+<ul>
+<li>Track key metrics</li>
+<li>Set up alerts</li>
+<li>Monitor error rates</li>
+<li>Track performance metrics</li>
+<li>Implement distributed tracing</li>
+<li>Log structured data</li>
+<li>Set up dashboards for visualization</li>
+<li>Conduct regular performance reviews</li>
+</ul>
+</li>
+</ol>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://www.mulesoft.com/resources/api/designing-apis-for-evolution">API Versioning Best Practices</a></li>
+<li><a href="https://swagger.io/specification/">OpenAPI Specification</a></li>
+<li><a href="https://cloud.google.com/architecture/rate-limiting-strategies-techniques">Rate Limiting Best Practices</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching">HTTP Caching</a></li>
+<li><a href="https://www.datadoghq.com/blog/api-monitoring/">API Monitoring Best Practices</a></li>
+<li><a href="https://redis.io/topics/caching">Redis Caching Patterns</a></li>
+<li><a href="https://prometheus.io/docs/introduction/overview/">Prometheus Monitoring</a></li>
+<li><a href="https://blog.restcase.com/rest-api-design-best-practices/">API Design Best Practices</a></li>
+<li><a href="https://owasp.org/www-project-api-security/">API Security Best Practices</a></li>
+<li><a href="https://www.nginx.com/blog/microservices-monitoring-nginx/">Microservices Monitoring</a></li>
+</ul>  </div> </article> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2025 Mikołaj Cięszczyk. Content is licensed under CC BY-SA 4.0.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://m.webtoo.ls/@astro" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow Astro on Mastodon</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/mastodon" data-astro-cid-sz7xmlte><path fill="currentColor" d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://twitter.com/astrodotbuild" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow Astro on Twitter</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/twitter" data-astro-cid-sz7xmlte><path fill="currentColor" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://github.com/withastro/astro" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Go to Astro's GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/github" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> </div> </footer>  <button class="scroll-to-top" id="scroll-to-top" aria-label="Scroll to top" data-astro-cid-bvzihdzo> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-astro-cid-bvzihdzo> <path d="M472.732,243.625l-0.869-1.337l-0.929-1.296L320.925,33.194C305.854,12.379,281.598,0,255.996,0
+          c-25.594,0-49.85,12.379-64.87,33.125L41.066,240.992l-0.929,1.296l-0.869,1.337c-8.17,12.669-12.49,27.323-12.49,42.395
+          c0,16.196,4.924,31.753,14.254,44.993c18.105,25.755,49.441,38.015,80.18,31.463v63.755c0,47.294,38.476,85.769,85.769,85.769
+          h98.039c47.285,0,85.76-38.475,85.76-85.769v-63.755c30.689,6.586,62.059-5.666,80.215-31.497
+          c9.295-13.206,14.228-28.772,14.228-44.959C485.222,270.948,480.902,256.294,472.732,243.625z M421.034,295.86
+          c-4.013,5.708-11.084,8.401-17.866,6.808l-73.459-17.159v140.722c0,13.64-11.05,24.698-24.69,24.698H206.98
+          c-13.64,0-24.698-11.059-24.698-24.698V285.509l-73.442,17.159c-6.799,1.584-13.861-1.099-17.874-6.808
+          c-2.079-2.948-3.118-6.39-3.118-9.84c0-3.221,0.912-6.45,2.735-9.278L240.592,68.942c3.578-4.942,9.304-7.872,15.404-7.872
+          s11.834,2.93,15.412,7.872l150.009,207.799c1.823,2.828,2.734,6.057,2.734,9.278C424.152,289.47,423.104,292.912,421.034,295.86z" data-astro-cid-bvzihdzo></path> </svg> </button> <script type="module">const o=document.getElementById("scroll-to-top");o&&(window.addEventListener("scroll",()=>{window.pageYOffset>300?o.style.display="flex":o.style.display="none"}),o.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"})}));</script> </body> </html>
