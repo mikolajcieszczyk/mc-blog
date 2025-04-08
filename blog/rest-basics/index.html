@@ -1,0 +1,381 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.1.7"><!-- Font preloads --><link rel="preload" href="/mc-blog//fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/mc-blog//fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://mikolajcieszczyk.github.io/mc-blog/blog/rest-basics/"><!-- Primary Meta Tags --><title>REST Basics</title><meta name="title" content="REST Basics"><meta name="description" content="Get to know CRUD endpoints using proper HTTP methods, status codes and naming conventions"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://mikolajcieszczyk.github.io/mc-blog/blog/rest-basics/"><meta property="og:title" content="REST Basics"><meta property="og:description" content="Get to know CRUD endpoints using proper HTTP methods, status codes and naming conventions"><meta property="og:image" content="https://mikolajcieszczyk.github.io/blog-placeholder-1.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://mikolajcieszczyk.github.io/mc-blog/blog/rest-basics/"><meta property="twitter:title" content="REST Basics"><meta property="twitter:description" content="Get to know CRUD endpoints using proper HTTP methods, status codes and naming conventions"><meta property="twitter:image" content="https://mikolajcieszczyk.github.io/blog-placeholder-1.jpg"><style>:root{--accent: #2337ff;--accent-dark: #000d8a;--black: 15, 18, 25;--gray: 96, 115, 159;--gray-light: 229, 233, 240;--gray-dark: 34, 41, 57;--gray-gradient: rgba(var(--gray-light), 50%), #fff;--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%)}@font-face{font-family:Atkinson;src:url(/mc-blog//fonts/atkinson-regular.woff) format("woff");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:Atkinson;src:url(/mc-blog//fonts/atkinson-bold.woff) format("woff");font-weight:700;font-style:normal;font-display:swap}body{font-family:Atkinson,sans-serif;font-size:20px;line-height:1.7;color:rgb(var(--gray-dark));margin:0;padding:0;text-align:left;background:linear-gradient(var(--gray-gradient)) no-repeat;background-size:100% 600px;word-wrap:break-word;overflow-wrap:break-word}main{width:720px;max-width:calc(100% - 2em);margin:auto;padding:3em 1em}h1,h2,h3,h4,h5,h6{margin:1rem 0;color:rgb(var(--black));line-height:1.2}h1{font-size:3.052em}h2{font-size:2.441em}h3{font-size:1.953em}h4{font-size:1.563em}h5{font-size:1.25em}strong,b{font-weight:700}a{color:var(--accent);&:hover{color:var(--accent)}}textarea{width:100%;font-size:16px}input{font-size:16px}table{width:100%}img{max-width:100%;height:auto;border-radius:8px}code{padding:2px 5px;background-color:rgb(var(--gray-light));border-radius:2px}pre{padding:1.5em;border-radius:8px;white-space:pre-wrap!important;word-wrap:break-word!important;max-width:100%;>code{all:unset;white-space:pre-wrap!important;word-wrap:break-word!important}}blockquote{border-left:4px solid var(--accent);padding:0 0 0 20px;margin:0;font-size:1.333em}hr{border:none;border-top:1px solid rgb(var(--gray-light))}ol,ul,p{margin:8px}ol{padding-left:3rem!important}ul{padding-left:4rem!important}.tldr{border:2px solid #e0e0e0;border-radius:8px;padding:10px 20px;margin:20px 0 60px;background-color:#f8f9fa;box-shadow:var(--box-shadow)}.sr-only{border:0;padding:0;margin:0;position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);clip-path:inset(50%);white-space:nowrap}@media (max-width: 720px){body{font-size:18px}main{padding:1em}}footer[data-astro-cid-sz7xmlte]{padding:1em;background:linear-gradient(var(--gray-gradient)) no-repeat;color:rgb(var(--gray));text-align:center}.social-links[data-astro-cid-sz7xmlte]{display:flex;justify-content:center;gap:1em;margin-top:1em}.social-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]{text-decoration:none;color:rgb(var(--gray))}.social-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:hover{color:rgb(var(--gray-dark))}a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}header[data-astro-cid-3ef6ksr2]{margin:0;padding:0 1em;background:#fff;box-shadow:0 2px 8px rgba(var(--black),5%)}h2[data-astro-cid-3ef6ksr2]{margin:0;font-size:1em}h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2],h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none}nav[data-astro-cid-3ef6ksr2]{display:flex;align-items:center;justify-content:space-between}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{padding:1em .5em;color:var(--black);border-bottom:4px solid transparent;text-decoration:none}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none;border-bottom-color:var(--accent)}.social-links[data-astro-cid-3ef6ksr2],.social-links[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{display:flex}@media (max-width: 720px){.social-links[data-astro-cid-3ef6ksr2]{display:none}}
+main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:820px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:rgb(var(--gray-dark))}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:rgb(var(--gray))}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}
+</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/mc-blog/" data-astro-cid-3ef6ksr2>MC Blog</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/mc-blog/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Home </a>  <a href="/mc-blog/blog" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Blog </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://github.com/mikolajcieszczyk" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Go to my GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo> <img width="1020" height="510" src="/mc-blog/rest.svg" alt="" data-astro-cid-bvzihdzo> </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <time datetime="2025-03-01T00:00:00.000Z"> Mar 1, 2025 </time>  </div> <h1 data-astro-cid-bvzihdzo>REST Basics</h1> <hr data-astro-cid-bvzihdzo> </div>  <p><strong>TLDR:</strong></p>
+<div class="tldr">
+<p><strong>REST (Representational State Transfer)</strong> is an architectural style for designing networked applications. It relies on a stateless, client-server, cacheable communications protocol — the HTTP protocol.</p>
+<p><strong>Key REST principles:</strong></p>
+<ol>
+<li><strong>Resources</strong> - everything is a resource (users, products, orders)</li>
+<li><strong>HTTP Methods</strong> - standard operations on resources:
+<ul>
+<li>GET - retrieve data</li>
+<li>POST - create new resources</li>
+<li>PUT/PATCH - update existing resources</li>
+<li>DELETE - remove resources</li>
+</ul>
+</li>
+<li><strong>Status Codes</strong> - standard responses indicating success or failure</li>
+<li><strong>Stateless</strong> - each request contains all information needed to process it</li>
+</ol>
+<p><strong>CRUD Operations with HTTP Methods:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Operation</th><th>HTTP Method</th><th>Example Endpoint</th><th>Description</th></tr></thead><tbody><tr><td>Create</td><td>POST</td><td>/api/users</td><td>Create a new user</td></tr><tr><td>Read</td><td>GET</td><td>/api/users/123</td><td>Get user with ID 123</td></tr><tr><td>Update</td><td>PUT/PATCH</td><td>/api/users/123</td><td>Update user with ID 123</td></tr><tr><td>Delete</td><td>DELETE</td><td>/api/users/123</td><td>Delete user with ID 123</td></tr></tbody></table>
+<p><strong>Common Status Codes:</strong></p>
+<ul>
+<li>2xx Success: 200 OK, 201 Created, 204 No Content</li>
+<li>4xx Client Error: 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found</li>
+<li>5xx Server Error: 500 Internal Server Error, 503 Service Unavailable</li>
+</ul>
+</div>
+<p><strong>REST (Representational State Transfer)</strong> is an <strong>architectural style</strong> for designing networked applications. It relies on a stateless, client-server, cacheable communications protocol — the HTTP protocol.</p>
+<h2 id="core-rest-concepts">Core REST Concepts</h2>
+<h3 id="resources-and-uris">Resources and URIs</h3>
+<p>In REST, everything is a resource. Resources are identified by URIs (Uniform Resource Identifiers):</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>https://api.example.com/users</span></span>
+<span class="line"><span>https://api.example.com/products/123</span></span>
+<span class="line"><span>https://api.example.com/orders/456/items</span></span></code></pre>
+<p>Best practices for URI design:</p>
+<ul>
+<li>Use nouns, not verbs (e.g., <code>/users</code> not <code>/getUsers</code>)</li>
+<li>Use plural nouns for collections (e.g., <code>/users</code> not <code>/user</code>)</li>
+<li>Use nested paths for related resources (e.g., <code>/users/123/posts</code>)</li>
+<li>Use query parameters for filtering, sorting, and pagination (e.g., <code>/users?role=admin&#x26;sort=name</code>)</li>
+</ul>
+<h3 id="http-methods">HTTP Methods</h3>
+<p>REST uses standard HTTP methods to perform operations on resources:</p>
+<h4 id="get">GET</h4>
+<ul>
+<li>Used to retrieve data</li>
+<li>Should be idempotent (multiple identical requests should have the same effect as a single request)</li>
+<li>Should not modify data</li>
+<li>Can include query parameters for filtering</li>
+</ul>
+<p>Example:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>GET /api/users?role=admin&#x26;sort=name</span></span></code></pre>
+<h4 id="post">POST</h4>
+<ul>
+<li>Used to create new resources</li>
+<li>Not idempotent (multiple identical requests will create multiple resources)</li>
+<li>Request body typically contains the data for the new resource</li>
+</ul>
+<p>Example:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>POST /api/users</span></span>
+<span class="line"><span>Content-Type: application/json</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  "name": "John Doe",</span></span>
+<span class="line"><span>  "email": "john@example.com"</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h4 id="put">PUT</h4>
+<ul>
+<li>Used to update existing resources</li>
+<li>Idempotent (multiple identical requests should have the same effect as a single request)</li>
+<li>Typically requires the complete resource representation</li>
+<li>Creates the resource if it doesn’t exist</li>
+</ul>
+<p>Example:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>PUT /api/users/123</span></span>
+<span class="line"><span>Content-Type: application/json</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  "name": "John Doe",</span></span>
+<span class="line"><span>  "email": "john@example.com",</span></span>
+<span class="line"><span>  "role": "admin"</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h4 id="patch">PATCH</h4>
+<ul>
+<li>Used to partially update existing resources</li>
+<li>Idempotent</li>
+<li>Only requires the fields to be updated</li>
+</ul>
+<p>Example:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>PATCH /api/users/123</span></span>
+<span class="line"><span>Content-Type: application/json</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  "email": "newemail@example.com"</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h4 id="delete">DELETE</h4>
+<ul>
+<li>Used to remove resources</li>
+<li>Idempotent (deleting a resource that doesn’t exist should return the same result as deleting it once)</li>
+</ul>
+<p>Example:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>DELETE /api/users/123</span></span></code></pre>
+<h3 id="http-status-codes">HTTP Status Codes</h3>
+<p>REST APIs use standard HTTP status codes to indicate the success or failure of a request:</p>
+<h4 id="1xx-informational">1xx Informational</h4>
+<ul>
+<li><strong>100 Continue</strong> - The server has received the request headers and the client should proceed to send the request body</li>
+<li><strong>102 Processing</strong> - The server has received and is processing the request, but no response is available yet</li>
+</ul>
+<h4 id="2xx-success">2xx Success</h4>
+<ul>
+<li><strong>200 OK</strong> - The request has succeeded</li>
+<li><strong>201 Created</strong> - The request has succeeded and a new resource has been created</li>
+<li><strong>204 No Content</strong> - The request has succeeded but there is no content to return</li>
+<li><strong>206 Partial Content</strong> - The server is delivering only part of the resource due to a range header sent by the client</li>
+</ul>
+<h4 id="3xx-redirection">3xx Redirection</h4>
+<ul>
+<li><strong>301 Moved Permanently</strong> - The URL of the requested resource has been changed permanently</li>
+<li><strong>302 Found</strong> - The URL of the requested resource has been changed temporarily</li>
+</ul>
+<h4 id="4xx-client-error">4xx Client Error</h4>
+<ul>
+<li><strong>400 Bad Request</strong> - The server cannot process the request due to a client error</li>
+<li><strong>401 Unauthorized</strong> - The client must authenticate itself to get the requested response</li>
+<li><strong>403 Forbidden</strong> - The client does not have access rights to the content</li>
+<li><strong>404 Not Found</strong> - The server cannot find the requested resource</li>
+</ul>
+<h4 id="5xx-server-error">5xx Server Error</h4>
+<ul>
+<li><strong>500 Internal Server Error</strong> - The server has encountered a situation it doesn’t know how to handle</li>
+<li><strong>502 Bad Gateway</strong> - The server, while acting as a gateway or proxy, received an invalid response from the upstream server</li>
+<li><strong>503 Service Unavailable</strong> - The server is not ready to handle the request</li>
+<li><strong>504 Gateway Timeout</strong> - The server, while acting as a gateway or proxy, did not get a response in time from the upstream server</li>
+</ul>
+<h4 id="6xx-custom-status-codes">6xx Custom Status Codes</h4>
+<p>While not officially part of the HTTP standard, some organizations use custom 6xx status codes for specific purposes:</p>
+<ul>
+<li><strong>600 Unparseable Response Headers</strong> - The response headers could not be parsed</li>
+<li><strong>601 Unparseable Response Body</strong> - The response body could not be parsed</li>
+</ul>
+<p>For a comprehensive list of all HTTP status codes and their meanings, visit <a href="https://http.dev/status">http.dev/status</a>.</p>
+<h2 id="rest-api-design-best-practices">REST API Design Best Practices</h2>
+<h3 id="1-use-proper-http-methods">1. Use Proper HTTP Methods</h3>
+<p>Always use the appropriate HTTP method for the operation you’re performing:</p>
+<ul>
+<li>GET for retrieving data</li>
+<li>POST for creating new resources</li>
+<li>PUT/PATCH for updating existing resources</li>
+<li>DELETE for removing resources</li>
+</ul>
+<h3 id="2-use-meaningful-status-codes">2. Use Meaningful Status Codes</h3>
+<p>Return the appropriate HTTP status code to indicate the result of the operation:</p>
+<ul>
+<li>2xx for success</li>
+<li>4xx for client errors</li>
+<li>5xx for server errors</li>
+</ul>
+<h3 id="3-use-consistent-naming-conventions">3. Use Consistent Naming Conventions</h3>
+<ul>
+<li>Use nouns for resources (e.g., <code>/users</code>, <code>/products</code>)</li>
+<li>Use plural nouns for collections</li>
+<li>Use kebab-case or snake_case for resource names (e.g., <code>/user-profiles</code>, <code>/order_items</code>)</li>
+</ul>
+<h3 id="4-version-your-api">4. Version Your API</h3>
+<p>Include the API version in the URI:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>https://api.example.com/v1/users</span></span>
+<span class="line"><span>https://api.example.com/v2/users</span></span></code></pre>
+<h3 id="5-use-query-parameters-for-filtering-sorting-and-pagination">5. Use Query Parameters for Filtering, Sorting, and Pagination</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>GET /api/users?role=admin&#x26;sort=name&#x26;page=2&#x26;limit=10</span></span></code></pre>
+<h3 id="6-use-proper-content-types">6. Use Proper Content Types</h3>
+<p>Specify the content type in the request and response headers:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Content-Type: application/json</span></span>
+<span class="line"><span>Accept: application/json</span></span></code></pre>
+<h3 id="7-use-hateoas-hypermedia-as-the-engine-of-application-state">7. Use HATEOAS (Hypermedia as the Engine of Application State)</h3>
+<p>Include links to related resources in the response:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "id"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">123</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "name"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"John Doe"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "email"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"john@example.com"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "_links"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">    "self"</span><span style="color:#E1E4E8">: { </span><span style="color:#79B8FF">"href"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/api/users/123"</span><span style="color:#E1E4E8"> },</span></span>
+<span class="line"><span style="color:#79B8FF">    "posts"</span><span style="color:#E1E4E8">: { </span><span style="color:#79B8FF">"href"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/api/users/123/posts"</span><span style="color:#E1E4E8"> }</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="example-rest-api">Example REST API</h2>
+<p>Let’s look at a complete example of a REST API for managing users:</p>
+<h3 id="create-a-user">Create a User</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>POST /api/users</span></span>
+<span class="line"><span>Content-Type: application/json</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  "name": "John Doe",</span></span>
+<span class="line"><span>  "email": "john@example.com",</span></span>
+<span class="line"><span>  "role": "user"</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<p>Response:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>HTTP/1.1 201 Created</span></span>
+<span class="line"><span>Content-Type: application/json</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  "id": 123,</span></span>
+<span class="line"><span>  "name": "John Doe",</span></span>
+<span class="line"><span>  "email": "john@example.com",</span></span>
+<span class="line"><span>  "role": "user",</span></span>
+<span class="line"><span>  "created_at": "2023-04-08T12:00:00Z"</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h3 id="get-a-user">Get a User</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>GET /api/users/123</span></span></code></pre>
+<p>Response:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>HTTP/1.1 200 OK</span></span>
+<span class="line"><span>Content-Type: application/json</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  "id": 123,</span></span>
+<span class="line"><span>  "name": "John Doe",</span></span>
+<span class="line"><span>  "email": "john@example.com",</span></span>
+<span class="line"><span>  "role": "user",</span></span>
+<span class="line"><span>  "created_at": "2023-04-08T12:00:00Z"</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h3 id="update-a-user">Update a User</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>PUT /api/users/123</span></span>
+<span class="line"><span>Content-Type: application/json</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  "name": "John Doe",</span></span>
+<span class="line"><span>  "email": "newemail@example.com",</span></span>
+<span class="line"><span>  "role": "admin"</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<p>Response:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>HTTP/1.1 200 OK</span></span>
+<span class="line"><span>Content-Type: application/json</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  "id": 123,</span></span>
+<span class="line"><span>  "name": "John Doe",</span></span>
+<span class="line"><span>  "email": "newemail@example.com",</span></span>
+<span class="line"><span>  "role": "admin",</span></span>
+<span class="line"><span>  "created_at": "2023-04-08T12:00:00Z",</span></span>
+<span class="line"><span>  "updated_at": "2023-04-08T13:00:00Z"</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h3 id="delete-a-user">Delete a User</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>DELETE /api/users/123</span></span></code></pre>
+<p>Response:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>HTTP/1.1 204 No Content</span></span></code></pre>
+<h3 id="list-users-with-filtering-and-pagination">List Users with Filtering and Pagination</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>GET /api/users?role=admin&#x26;sort=name&#x26;page=2&#x26;limit=10</span></span></code></pre>
+<p>Response:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>HTTP/1.1 200 OK</span></span>
+<span class="line"><span>Content-Type: application/json</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  "data": [</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>      "id": 123,</span></span>
+<span class="line"><span>      "name": "John Doe",</span></span>
+<span class="line"><span>      "email": "john@example.com",</span></span>
+<span class="line"><span>      "role": "admin",</span></span>
+<span class="line"><span>      "created_at": "2023-04-08T12:00:00Z"</span></span>
+<span class="line"><span>    },</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>      "id": 124,</span></span>
+<span class="line"><span>      "name": "Jane Smith",</span></span>
+<span class="line"><span>      "email": "jane@example.com",</span></span>
+<span class="line"><span>      "role": "admin",</span></span>
+<span class="line"><span>      "created_at": "2023-04-08T12:30:00Z"</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>  ],</span></span>
+<span class="line"><span>  "pagination": {</span></span>
+<span class="line"><span>    "total": 25,</span></span>
+<span class="line"><span>    "page": 2,</span></span>
+<span class="line"><span>    "limit": 10,</span></span>
+<span class="line"><span>    "pages": 3</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h2 id="common-rest-api-mistakes-to-avoid">Common REST API Mistakes to Avoid</h2>
+<h3 id="1-using-verbs-in-uris">1. Using Verbs in URIs</h3>
+<p>❌ Bad:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>GET /api/getUser/123</span></span>
+<span class="line"><span>POST /api/createUser</span></span>
+<span class="line"><span>PUT /api/updateUser/123</span></span>
+<span class="line"><span>DELETE /api/deleteUser/123</span></span></code></pre>
+<p>✅ Good:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>GET /api/users/123</span></span>
+<span class="line"><span>POST /api/users</span></span>
+<span class="line"><span>PUT /api/users/123</span></span>
+<span class="line"><span>DELETE /api/users/123</span></span></code></pre>
+<h3 id="2-not-using-proper-http-methods">2. Not Using Proper HTTP Methods</h3>
+<p>❌ Bad:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>GET /api/users/123/delete</span></span>
+<span class="line"><span>GET /api/users/create</span></span></code></pre>
+<p>✅ Good:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>DELETE /api/users/123</span></span>
+<span class="line"><span>POST /api/users</span></span></code></pre>
+<h3 id="3-not-using-proper-status-codes">3. Not Using Proper Status Codes</h3>
+<p>❌ Bad:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>HTTP/1.1 200 OK</span></span>
+<span class="line"><span>Content-Type: application/json</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  "success": false,</span></span>
+<span class="line"><span>  "error": "User not found"</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<p>✅ Good:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>HTTP/1.1 404 Not Found</span></span>
+<span class="line"><span>Content-Type: application/json</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  "error": "User not found"</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h3 id="4-inconsistent-response-format">4. Inconsistent Response Format</h3>
+<p>❌ Bad:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>// Success response</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  "data": { "id": 123, "name": "John Doe" }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// Error response</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  "error": "User not found"</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<p>✅ Good:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>// Success response</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  "data": { "id": 123, "name": "John Doe" }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// Error response</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  "error": {</span></span>
+<span class="line"><span>    "code": "USER_NOT_FOUND",</span></span>
+<span class="line"><span>    "message": "User not found"</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h2 id="conclusion">Conclusion</h2>
+<p>REST is a powerful architectural style for designing networked applications. By following the principles and best practices outlined in this article, you can create APIs that are:</p>
+<ul>
+<li>Easy to understand and use</li>
+<li>Consistent and predictable</li>
+<li>Scalable and maintainable</li>
+<li>Compatible with a wide range of clients and platforms</li>
+</ul>
+<p>Remember that REST is not a standard but a set of guidelines and best practices. The key is to be consistent in your API design and to follow the established conventions.</p>  </div> </article> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2025 Mikołaj Cięszczyk. Content is licensed under CC BY-SA 4.0.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://m.webtoo.ls/@astro" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow Astro on Mastodon</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/mastodon" data-astro-cid-sz7xmlte><path fill="currentColor" d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://twitter.com/astrodotbuild" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow Astro on Twitter</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/twitter" data-astro-cid-sz7xmlte><path fill="currentColor" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://github.com/withastro/astro" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Go to Astro's GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/github" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> </div> </footer>  </body></html>
