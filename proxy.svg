@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="450" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="600" height="450" fill="#f8f9fa" rx="10" ry="10" />
+
+  <!-- Client -->
+  <rect x="50" y="175" width="120" height="100" rx="10" ry="10" fill="#4e73df" opacity="0.8" />
+  <text x="110" y="230" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#333">Client</text>
+
+  <!-- Proxy -->
+  <rect x="240" y="175" width="120" height="100" rx="10" ry="10" fill="#1cc88a" opacity="0.8" />
+  <text x="300" y="230" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#333">Proxy</text>
+
+  <!-- Server -->
+  <rect x="430" y="175" width="120" height="100" rx="10" ry="10" fill="#f6c23e" opacity="0.8" />
+  <text x="490" y="230" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#333">Server</text>
+
+  <!-- Connecting lines -->
+  <line x1="170" y1="225" x2="240" y2="225" stroke="#333" stroke-width="2" />
+  <line x1="360" y1="225" x2="430" y2="225" stroke="#333" stroke-width="2" />
+
+  <!-- Arrows -->
+  <polygon points="235,220 240,225 235,230" fill="#333" />
+  <polygon points="425,220 430,225 425,230" fill="#333" />
+</svg>
