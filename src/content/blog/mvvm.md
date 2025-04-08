@@ -1,7 +1,7 @@
 ---
 title: "MVVM: Basics"
 description: "MVVM: Basics"
-pubDate: "Apr 8 2025"
+pubDate: "Feb 24 2025"
 heroImage: "/mc-blog/mvvm-diagram.svg"
 ---
 
