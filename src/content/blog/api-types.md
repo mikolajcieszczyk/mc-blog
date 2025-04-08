@@ -2,7 +2,7 @@
 title: "Different Types of API - from REST to GraphQL"
 description: "Overview of the most popular API types used in modern application development"
 pubDate: "Apr 5 2025"
-heroImage: "/mc-blog/api-types.svg"
+heroImage: "/mc-blog/api-types.webp"
 ---
 
 **TLDR:**
@@ -95,3 +95,7 @@ soap.createClient(url, (err, client) => {
 ## Summary
 
 The choice of API type depends on specific project requirements. REST is the simplest to start with, GraphQL offers the most flexibility, gRPC provides the best performance, and SOAP is best for enterprise legacy systems.
+
+## Sources
+
+[1] _Claude 3.7 Sonnet_. (2024). _Comprehensive understanding of different API types and their use cases_.

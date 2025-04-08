@@ -2,7 +2,7 @@
 title: "Proxy - Network Communication Intermediary"
 description: "Learn about the concept of proxy, its types, applications, and benefits in network communication"
 pubDate: "Mar 22 2025"
-heroImage: "/mc-blog/proxy.svg"
+heroImage: "/mc-blog/proxy.webp"
 ---
 
 ## TLDR
@@ -111,3 +111,7 @@ Proxies can be used to bypass geographical restrictions that block access to cer
 Proxies are a powerful tool in the world of computer networks, offering many benefits, from enhancing security and privacy to speeding up access to resources and load balancing. However, like any tool, proxies can also be used for illegal or unethical purposes.
 
 Understanding how a proxy works, what its types and applications are, and what potential risks exist, is crucial for safe and efficient use of this technology. Whether you are a programmer, network administrator, or an ordinary Internet user, knowledge about proxies can help you better understand and utilize the possibilities of computer networks.
+
+## Sources
+
+[1] _Claude 3.7 Sonnet_. (2024). _Comprehensive understanding of proxy servers and their applications in network communication_.

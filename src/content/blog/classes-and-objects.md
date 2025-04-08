@@ -2,7 +2,7 @@
 title: "OOP: Classes and objects"
 description: "OOP: Classes and objects"
 pubDate: "Feb 15 2025 11:30"
-heroImage: "/mc-blog/oop-code.png"
+heroImage: "/mc-blog/classes-and-objects.webp"
 ---
 
 ## Class Structure
@@ -317,3 +317,11 @@ const ex = new Example();
 ex._protectedProperty; // Still works! Not actually protected
 ex._helperMethod(); // Still works! Just a convention
 ```
+
+## Sources
+
+[1] _W3Schools_. (2024). _JavaScript Objects_. Retrieved from https://www.w3schools.com/js/js_objects.asp
+
+[2] _Claude 3.7 Sonnet_. (2024). _Comprehensive understanding of Object-Oriented Programming concepts_.
+
+[3] _Author's personal experience and practical knowledge in JavaScript development_.

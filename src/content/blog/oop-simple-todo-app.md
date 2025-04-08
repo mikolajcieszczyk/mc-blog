@@ -2,7 +2,7 @@
 title: "OOP: Very simple CRUD TODO app code"
 description: "OOP: Very simple CRUD TODO app code"
 pubDate: "Feb 15 2025 13:00"
-heroImage: "/mc-blog/oop-todo.svg"
+heroImage: "/mc-blog/todo-app.webp"
 ---
 
 ```js
@@ -155,3 +155,7 @@ todoList.deleteTodo("123");
 // 10. Delete all todos
 todoList.deleteAll();
 ```
+
+## Sources
+
+[1] _Author's personal experience and practical knowledge in JavaScript development_.

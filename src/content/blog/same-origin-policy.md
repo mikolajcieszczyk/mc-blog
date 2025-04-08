@@ -2,7 +2,7 @@
 title: "Same Origin Policy (SOP) - The Foundation of Web Application Security"
 description: "Learn about Same Origin Policy, its importance for security, and how to handle cross-origin limitations"
 pubDate: "Mar 16 2025"
-heroImage: "/mc-blog/same-origin-policy.svg"
+heroImage: "/mc-blog/sop.webp"
 ---
 
 **TLDR:**
@@ -419,3 +419,7 @@ Same Origin Policy is a fundamental security mechanism in web browsers that prev
 Although SOP can pose challenges in modern web applications, there are secure mechanisms such as CORS, postMessage API, and proxy servers that allow for cross-origin communication without violating security principles.
 
 Understanding Same Origin Policy and its implications is essential for every web application developer to create secure and reliable applications.
+
+## Sources
+
+[1] _Claude 3.7 Sonnet_. (2024). _Comprehensive understanding of Same Origin Policy and cross-origin communication mechanisms_.

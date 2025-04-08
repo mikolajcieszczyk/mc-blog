@@ -2,7 +2,7 @@
 title: "MVVM: Basics"
 description: "MVVM: Basics"
 pubDate: "Feb 24 2025"
-heroImage: "/mc-blog/mvvm-diagram.svg"
+heroImage: "/mc-blog/mvvm.webp"
 ---
 
 **TLDR:**
@@ -300,3 +300,7 @@ View acts as the presentation layer, displaying data to the user and passing int
 2. View passes request to ViewModel
 3. ViewModel works with Model
 4. Result returns through ViewModel to View
+
+## Sources
+
+[1] _Claude 3.7 Sonnet_. (2024). _Comprehensive understanding of MVVM architectural pattern and its modern implementations_.

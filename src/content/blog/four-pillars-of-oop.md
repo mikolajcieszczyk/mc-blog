@@ -2,7 +2,7 @@
 title: "Four pillars of OOP"
 description: "Four pillars of OOP"
 pubDate: "Jan 18 2025"
-heroImage: "/mc-blog/oop-pillars.svg"
+heroImage: "/mc-blog/oop-pillars.webp"
 ---
 
 ### What is Object Oriented Programming (OOP)?
@@ -314,6 +314,10 @@ function calculateArea(shape) {
 
 **Polymorphism** - Refactor ugly switch/case statements
 
-_Sources_:
+## Sources
 
-**Video:** ["Object-oriented Programming in JavaScript: Made Super Simple | Mosh"](https://www.youtube.com/watch?v=PFmuCDHHpwk) by **Mosh Hamedani**
+[1] _Mosh Hamedani_. (2024). _Object-oriented Programming in JavaScript: Made Super Simple_. Retrieved from https://www.youtube.com/watch?v=PFmuCDHHpwk
+
+[2] _Claude 3.7 Sonnet_. (2024). _Comprehensive understanding of Object-Oriented Programming concepts_.
+
+[3] _Author's personal experience and practical knowledge in JavaScript development_.

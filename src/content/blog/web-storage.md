@@ -2,7 +2,7 @@
 title: "Web Storage Mechanisms and Cookie Management"
 description: "Learn about different browser storage options, their limitations, and best practices for managing cookies"
 pubDate: "Mar 5 2025"
-heroImage: "/mc-blog/web-storage.svg"
+heroImage: "/mc-blog/storages.webp"
 ---
 
 **TLDR:**
@@ -483,3 +483,7 @@ Web storage mechanisms provide powerful options for storing data in the browser,
 Remember that client-side storage should complement, not replace, server-side storage. Sensitive data should always be stored securely on the server, with client-side storage used primarily for improving user experience and application performance.
 
 Choose the right storage mechanism for your specific use case, implement proper security measures, and always consider privacy regulations when storing user data.
+
+## Sources
+
+[1] _Claude 3.7 Sonnet_. (2024). _Comprehensive understanding of web storage mechanisms and cookie management_.

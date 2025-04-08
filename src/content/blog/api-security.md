@@ -1,13 +1,13 @@
 ---
-title: "API Security"
+title: "API Security: basics"
 description: "A comprehensive guide to API security, covering authentication, data validation, error handling, and basic security measures"
 pubDate: "Mar 29 2025"
-heroImage: "/mc-blog/api-security.svg"
+heroImage: "/mc-blog/api-security.webp"
 ---
 
 # API Security
 
-In today's world, where APIs are a crucial component of most applications, their security is of paramount importance. In this article, we'll discuss a comprehensive approach to securing APIs, focusing on four main areas: authentication and authorization, data validation, error handling, and basic security measures.
+In today's world, where APIs are a crucial component of most applications, their security is of paramount importance. In this article, we'll discuss a comprehensive approach to securing APIs, focusing on four main areas: authentication, data validation, error handling, and basic security measures.
 
 ## 1. Authentication and Authorization
 
@@ -186,3 +186,4 @@ Remember that security is a continuous process that requires regular updates and
 - [Helmet.js Documentation](https://helmetjs.github.io/)
 - [CORS Best Practices](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 - [Rate Limiting Best Practices](https://www.npmjs.com/package/express-rate-limit)
+- [1] _Claude 3.7 Sonnet_. (2024). _Comprehensive understanding of API security principles and implementation strategies_.

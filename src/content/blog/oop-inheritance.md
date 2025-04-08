@@ -2,7 +2,7 @@
 title: "OOP: Inheritance"
 description: "OOP: Inheritance"
 pubDate: "Feb 15 2025 12:00"
-heroImage: "/mc-blog/oop-inheritance.png"
+heroImage: "/mc-blog/inheritance.webp"
 ---
 
 ## 1. Parent/Child Classes
@@ -235,3 +235,11 @@ const arr = new MyArray(1, 2, 3);
 console.log(arr.first()); // 1
 console.log(arr.last()); // 3
 ```
+
+## Sources
+
+[1] _W3Schools_. (2024). _JavaScript Class Inheritance_. Retrieved from https://www.w3schools.com/js/js_class_inheritance.asp
+
+[2] _Claude 3.7 Sonnet_. (2024). _Comprehensive understanding of Object-Oriented Programming concepts_.
+
+[3] _Author's personal experience and practical knowledge in JavaScript development_.

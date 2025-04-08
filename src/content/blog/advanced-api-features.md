@@ -2,7 +2,7 @@
 title: "Advanced API Features - Versioning, Documentation, Rate Limiting and Caching"
 description: "A comprehensive guide to implementing advanced API features including versioning, documentation, rate limiting, caching, and monitoring"
 pubDate: "03 Apr 2025"
-heroImage: "/mc-blog/advanced-api-features.svg"
+heroImage: "/mc-blog/advanced-api-features.webp"
 ---
 
 # Advanced API Features
@@ -595,3 +595,4 @@ app.get("/health", (req, res) => {
 - [API Design Best Practices](https://blog.restcase.com/rest-api-design-best-practices/)
 - [API Security Best Practices](https://owasp.org/www-project-api-security/)
 - [Microservices Monitoring](https://www.nginx.com/blog/microservices-monitoring-nginx/)
+- [1] _Claude 3.7 Sonnet_. (2024). _Comprehensive understanding of advanced API features and implementation strategies_.

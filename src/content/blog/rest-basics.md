@@ -2,7 +2,7 @@
 title: "REST Basics"
 description: "Get to know CRUD endpoints using proper HTTP methods, status codes and naming conventions"
 pubDate: "Mar 1 2025"
-heroImage: "/mc-blog/rest.svg"
+heroImage: "/mc-blog/rest.webp"
 ---
 
 **TLDR:**
@@ -490,3 +490,7 @@ REST is a powerful architectural style for designing networked applications. By 
 - Compatible with a wide range of clients and platforms
 
 Remember that REST is not a standard but a set of guidelines and best practices. The key is to be consistent in your API design and to follow the established conventions.
+
+## Sources
+
+[1] _Claude 3.7 Sonnet_. (2024). _Comprehensive understanding of REST architectural style and API design principles_.

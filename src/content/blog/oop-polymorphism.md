@@ -2,7 +2,7 @@
 title: "OOP: Polymorphism"
 description: "OOP: Polymorphism"
 pubDate: "Feb 15 2025 12:30"
-heroImage: "/mc-blog/oop-polymorphism.png"
+heroImage: "/mc-blog/polymorphism.webp"
 ---
 
 ## 1. Interfaces
@@ -112,3 +112,11 @@ class UserService {
 const logger = new Logger();
 const userService = new UserService(logger);
 ```
+
+## Sources
+
+[1] genix. (2024). _Polymorphism in Javascript_. Retrieved from https://dev.to/m__mdy__m/polymorphism-in-javascript-3l84
+
+[2] _Claude 3.7 Sonnet_. (2024). _Comprehensive understanding of Object-Oriented Programming concepts_.
+
+[3] _Author's personal experience and practical knowledge in JavaScript development_.

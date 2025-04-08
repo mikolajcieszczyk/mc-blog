@@ -2,7 +2,7 @@
 title: "MVC: Basics"
 description: "MVC: Basics"
 pubDate: "Feb 18 2025"
-heroImage: "/mc-blog/mvc.svg"
+heroImage: "/mc-blog/mvc.webp"
 ---
 
 **TLDR:**
@@ -233,3 +233,7 @@ In a full-stack application, View would be represented by:
 2. Controller passes request to Service
 3. Service works with Model
 4. Result returns through Controller to client
+
+## Sources
+
+[1] _Claude 3.7 Sonnet_. (2024). _Comprehensive understanding of MVC architectural pattern and its modern implementations_.

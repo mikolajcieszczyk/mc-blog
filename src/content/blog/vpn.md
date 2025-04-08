@@ -2,7 +2,7 @@
 title: "VPN - Virtual Private Network"
 description: "Learn about VPN technology, its types, security features, and applications in modern networking"
 pubDate: "Mar 27 2025"
-heroImage: "/mc-blog/vpn.svg"
+heroImage: "/mc-blog/vpn.webp"
 ---
 
 ## TLDR
@@ -170,3 +170,7 @@ Adopt these usage habits:
 VPN technology has become an essential tool in modern digital life, offering robust security and privacy features for both personal and professional use. Understanding how VPNs work, their different types, and security features is crucial for making informed decisions about online privacy and security.
 
 Whether you're a casual internet user concerned about privacy, a business professional needing secure remote access, or an organization looking to protect sensitive data, VPN technology provides a reliable solution for secure and private internet communication.
+
+## Sources
+
+[1] _Claude 3.7 Sonnet_. (2024). _Comprehensive understanding of VPN technology, security features, and applications_.
